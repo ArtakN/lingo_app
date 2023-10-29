@@ -1,0 +1,20 @@
+/* flex-wrap and gap, 
+   flex basis, flex-grow, and flex  */
+
+/*
+  Challenge: Wrap the feature-item divs with flexbox
+    1. Each .feature-item should grow from an initial main size of 220px
+    2. Allow the items inside .section-two-image-container to
+       wrap into multiple lines
+    3. Apply a gap between each .feature-item
+*/
+.feature-item {
+   flex-basis: 220px;
+   flex-grow: 1;
+}
+
+.section-two-image-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1em;
+}

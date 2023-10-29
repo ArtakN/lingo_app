@@ -1,0 +1,60 @@
+.dashboard {
+  padding: 100px 24px 24px 24px;
+  height: 100vh;
+
+  .container {
+    width: 700px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tabs {
+    padding-left: 24px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .tabBtn {
+    outline: none;
+    border: 1px solid #cfd6e4;
+    height: 32px;
+    display: flex;
+    line-height: 10px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .active {
+    background-color: #fff;
+    z-index: 1;
+    border-bottom: none;
+  }
+
+  .activeTab {
+    width: 700px;
+    border: 1px solid #cfd6e4;
+    border-radius: 0 0 8px 8px;
+    background-color: white;
+    padding: 24px;
+    top: 31px;
+    flex-grow: 1;
+    position: relative;
+    top: -1px;
+    overflow: auto;
+  }
+
+  .tabInfo {
+    margin-bottom: 24px;
+    border-bottom: 1px dashed #cfd6e4;
+    padding-bottom: 16px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .wordsList {
+    list-style: none;
+    border: 1px solid #cfd6e4;
+    padding: 8px;
+  }
+}

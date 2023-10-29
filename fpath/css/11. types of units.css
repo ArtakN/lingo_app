@@ -1,0 +1,174 @@
+/* absolute units like pixels will always appear the same size
+   no matter where you view them 
+
+      px      пиксели
+      in	Дюйм (1 дюйм равен 2,54 см)
+      cm	Сантиметр
+      mm	Миллиметр
+      pt	Пункт (1 пункт равен 1/72 дюйма)
+      pc	Пика (1 пика равна 12 пунктам)
+
+   relative units 
+
+      relative to another value
+      dynemic flexibility
+      resize and scale 
+
+================================================================================
+percentage (%) unit
+
+   when using a percentage for width, the percentige is based on the width of its parent element   
+   
+   with persentage units we can 
+      create flexible containers  
+      controling the with of images 
+================================================================================
+
+================================================================================
+em unit 
+   
+   font-size in em
+
+   1em is equal to the parent elements font-size value, if it is not set for the parent element it will equal to parent's parent font-size. If the parent font size is 20px and we set child's font size 2em, it will be 40px
+
+   if the font size is not set for any of the parents, then 1 em will equal to the defalult browser fonsite which is usually 16 px so if 1 em = 16 px then 1.5m = 24 px
+   
+   to count em equivalent for a px value we need to
+   desired pixel value / parent element font size in px
+   
+   for example we want to fined em equivalent for 52 px value:
+   
+      52/16=3.25em
+   
+   -----------------------------------------------------------------------------
+
+   margin and padding in em   
+   
+   margin and padding values in em are relative to the element's
+   current font-size value
+
+   for example font size of a h1 is 24px, 
+   -if we set it's margin-bottom 1em it will be equal 24px,  
+    
+      h1 {
+         font-size: 24px 
+         width: 80%;
+         border-bottom: dotted 1px;
+         padding-bottom: 2em;          (2*24=48px)
+         margin-bottom: 1em;           (1*24=24px)
+      }
+   
+   -if h1 font size is 1m (and it's parents don't have setted font size),
+    so its font size in px = 16px (browser default font size), and 
+    margin bottom will be equal 1em and it is equal 16px.
+
+      h1 {
+         width: 80%;
+         border-bottom: dotted 1px;
+         padding-bottom: 2em;          (2*16=32px)
+         margin-bottom: 1em;           (1*16=16px)
+      }
+
+   to count em equivavelnt px in margin and padding, we need
+   
+      margin or padding px value / font size px valu
+   
+   for example we have
+
+      h1 {
+         font-size: 24px,
+         margin-bottom: 12px
+      }
+
+      to count margin-bottom in em: 12/24=0.5em
+
+      h1 {
+         font-size: 24px,
+         margin-bottom: 0.5em
+      }
+   
+   -----------------------------------------------------------------------------
+
+   the compounding issue with em
+
+   An em value can compound from one level to the another
+
+   if we give one element of font size in em and then also set a
+   perent's or a sister element's font-size in em. those 2 values 
+   will create a compounding effect. it can be quite confused.
+   Fortunately there is a simpler way for font-size value - rem
+
+   the em unit is more usefull for margins and paddings
+================================================================================
+
+================================================================================
+rem unit - root em
+
+rem unit is allways relative to the root <html> element insted of the parent element. Most browsers set the default root font-size to 16px. So by default, a rem value will be a multiple of 16px. If our font size is 24px and we want to set the font size with rem we need to calculate it at first,    
+
+   24px/16px = 1.5 rem
+
+   h1 {
+      font-size: 1.5rem,      
+      margin-bottom: 12px
+   }
+
+Why we need to write it in rem
+
+   Let imagine we use for our text 24px, and the browser default value is 16px.And a user wants to change its browser default font-size, for example, from 16px to 18px, in this case our text font size will be 24 and ignore users changes. But if we write it in rem, as soon as he change browser default font size then our text font size will be changed form 24 to 18*1.5=27px
+================================================================================
+
+================================================================================
+which unit to use?
+
+font sizes
+   use rem
+   no compounding
+   more predictable
+
+margin & padding
+   use em
+   proportional scaling
+   based on element's current font size
+
+line height 
+   unitless number values
+   line-height: 1.5;      means 1.5 times of its font-size
+                           if font-size is 16px, line-height= 16*1.5=24px 
+
+with
+   use %
+   flexiable containers
+   flexiable images
+
+max-with
+   use px
+   easier to manage 
+   ensures consistency
+================================================================================
+
+================================================================================
+Адаптивный миксин adaptiveValue
+
+в src/scss/base/mixins.scss создаем адаптивный миксин adaptiveValue, с помощю которого можно адаптировать некоторые свойства
+
+    // Адаптивное свойство (clamp)
+    @mixin adaptiveValue($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
+    	@if ($startSize==0) {
+    		$startSize: 0.000001;
+    	}
+    	@if ($minSize==0) {
+    		$minSize: 0.000001;
+    }
+
+для использования этого миксина в scss файое вызиваем миксин, куда 
+
+@include adaptiveValue("font-size", 42, 30);   -передаем свойства которий хотим адаптировать (font-size), началный размер (42) и конечный размер (30)
+
+// Для calc();
+$addSize: math.div($startSize - $minSize, 16);
+
+@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+    $widthFrom: $maxWidth;
+}
+================================================================================

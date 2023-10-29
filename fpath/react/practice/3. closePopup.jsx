@@ -1,0 +1,1 @@
+// we have a drop menu of filters and we nant to create a functionality to close the drop menuwhen we click outside of the menu

@@ -1,0 +1,171 @@
+/* Когда хотим дать пространства между несколькими элементами, например элементом списка хотим отдолить друг от друга 20px, пишум
+
+      padding-block: 10px;
+
+   такой запис добавить по 10px padding с верху и с низу каждому элементу 
+   
+   -------------------------------------------------------------------------
+   styling all elements of the list except the last one using psedou classes
+
+      li:not(:last-child) {
+         border-bottom: 1px dotted #a190b6;
+      }
+
+   -------------------------------------------------------------------------
+   
+   Точечки перед элементамы ul, можно стилизовать 2мя способами
+      1. li::before (я использовал этот вариант)
+      2. li::marker {
+            color:
+            font-size:
+         }
+
+   -------------------------------------------------------------------------
+
+   курсор при наведения миши на неактивную кнопку 
+   
+   button:disabled {
+      cursor: not-allowed;
+   }
+
+   -------------------------------------------------------------------------
+
+   При ставке background image, если хотим прекрепить например к правому краю
+         .main {
+            background: url(../...) right 75% no-repeat;
+         }
+   задли по горизонтали к правому краю, по вертикали 75%
+
+   -------------------------------------------------------------------------
+
+   Текст и placeholder в input можем передвигать от края 2мя способами
+         .input {
+            padding-left: 8px;
+               или
+            text-ident: 8px;
+         }
+
+   -------------------------------------------------------------------------
+
+   
+   Оцентровка элемента по горизонтали. Существует 2 способа:
+
+      1. с помощю flex, для элемента дольжно быть заданно ширина
+
+         div {
+            max-with: 450px;
+            display: flax;
+            justify-content: center;
+         }
+
+      2. с помощю margin, для элемента дольжно быть заданно ширина
+
+      div {
+         max-with: 450px;
+         margin-left: auto;
+         margin-right: auto;
+
+            или же просто
+
+         margin: auto
+      }
+
+      но есть важный момент - элемент дольжен быть блочным. Tсли же элемент не блочный то его надо делать блочным с помощю либо "display: inline-block" либо же "display: block".
+
+      img {
+         display: inline-block;   (display: block)
+         max-with: 450px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+
+   -----------------------------------------------------------------------------
+
+   Оцентрировние inline элементов
+
+      мы знаем, что элементы можно оцентрировать с помощю text-align: centr;
+
+      p, h1 {
+         text-align: centr;
+      }
+
+      данная свойства оцентрирует не только текс, но и любой инлайн элемент
+
+      *** но есть один важный момент
+
+      чтобы оцентрировать button и img, надо задать это свойства не к самим тегам а к их контейнеру
+
+         html
+
+            <div container>
+               <button>New button</button>
+               <img src="https/photo.png" alt=""/>
+            </div>
+
+         css
+
+            .container {
+               text-align: center;
+            }
+
+   -----------------------------------------------------------------------------
+
+    Some of tags need to be styled diractly
+
+      for example <button></button> will not take font-family from the parent tag, so we need to add it to button diractly. We can do it by 2 ways
+
+      button {
+         font-family: inherit;           
+      }
+
+         or
+
+      buton {
+         font-famaly: 'Orbitron', sans-serif;
+      }
+
+   -----------------------------------------------------------------------------
+   
+    Сss properties are inherited:
+
+      color
+      font-family
+      font-size
+      font-style
+      font-variant
+      font-weight
+      letter-spacing
+      line-height
+      list-style-image
+      list-style-position
+      list-style-type
+      list-style
+      text-align
+      text-indent
+      text-transform
+      white-space
+      azimuth
+      border-collapse
+      border-spacing
+      caption-side
+      cursor
+      direction
+      elevation
+      empty-cells
+      orphans
+      pitch-range
+      pitch
+      quotes
+      richness
+      speak-header
+      speak-numeral
+      speak-punctuation
+      speak
+      speech-rate
+      stress
+      visibility
+      voice-family
+      volume
+      widows
+      word-spacing
+*/

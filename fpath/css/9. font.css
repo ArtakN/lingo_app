@@ -1,0 +1,63 @@
+/* font css 
+
+   body {
+      font-family: "Vardana", "Geneve", sens-serif;
+   }
+
+   Browser default font is "Times New Rome", if we don't use font-family   style browser will "Times New Rome". If we use use it, browser will look for the first font-family (it is "Vardana" in our example above), if the browser fineds the "Vardana" font then it will use it, but if it can't fined then it will try to fined the "Geneve" font, and if it can't fined the "Geneve", too. Then says give me any san-serif fonts. sant-serif is a category of fonts, he says give me any font in this category.
+
+      ***   font names we write in double quotes ("Vardana"), 
+            serif or san-serif without double quotes.
+
+   ther are mainly 2 categories:
+      1. serif       - cintaines decorative strokes at the end of the letters
+      2. san-serif   - without these decotaive strokes (sans means without)
+   
+   -----------------------------------------------------------------------------
+
+   Google font
+
+   before we can use some specific fonts we need to add it from Google fonts
+   we add it in <head></head> before adding stylesheet,
+
+   <html>
+       <head>
+
+           <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap" rel="stylesheet">
+
+           <link rel="stylesheet" href="styles.css" />
+       </head>
+       <body>
+
+       </body>
+   </html>
+
+   CSS
+
+      body {
+         font-famaly: 'Orbitron', sans-serif;
+      }                                   
+   
+   ---------------------------------------------------------------------------
+
+   // Font file
+
+   we cant fined some specific fonts in Google font, so we have to fined font file in the internet
+   (https://www.1001fonts.com/), save the file to our file-system,
+
+   then we add it to our style.css
+
+      @font-face {
+         src: url("Corleone.ttf");
+         font-family: Corleone;
+      }
+
+   and now we can use it
+
+      h1 {
+         font-family: Corleone;
+      }
+
+   --------------------------------------------------------------------------

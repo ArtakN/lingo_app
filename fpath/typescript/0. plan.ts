@@ -1,0 +1,12 @@
+/*
+   Types
+      String
+      Number
+      Bolean
+      Object
+      Array
+      Typle
+      Enum
+      Any
+      Union
+*/ 

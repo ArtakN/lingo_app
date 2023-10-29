@@ -1,0 +1,56 @@
+<!-- В основном не исползуется
+    Для создания таблиц место этого исползуется Grid -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+</head>
+
+<body>
+    <table border="1">
+        <!-- Сначала создаем ряди - tr (горизонтальные), потом в рядах создаем ячейки - td (вертикальные). 
+            Количество ячеек всех рядов дольжни быть одинаковимы -->
+
+        <!-- thead - шапка таблицы -->
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Letter</th>
+                <th>Simbol</th> 
+            </tr>
+        </thead>
+        <!-- tbody - тело таблицы -->
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>A</td>
+                <td>$</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>F</td>
+                <td>&</td>
+            </tr>
+        </tbody>
+
+        <!-- tfoot - подвал таблицы, все ячейки соединины в единое -->
+        <tfoot></tfoot>
+    </table>
+
+    <!-- стили для таблицы -->
+    <style>
+        table {
+            /*  По умолчанию рамка рисуется вокруг каждой ячейки, образуя тем самым сетку. 
+                убираем это свойства и рамка становится обычная -не сеточной  */
+            border-collapse: collapse;
+
+            /* Содержимое в ячейке таблицы выравниваем с помошю vertical-align: top или bottom */
+            vertical-align: top;
+        }
+    </style>
+</body>
+
+</html>

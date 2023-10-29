@@ -1,0 +1,174 @@
+<!-- Every HTML element has a default display value, depending on what type of element it is. 
+There are two display values: 
+   1. block
+   2. inline
+
+Block elements
+
+   A block-level element always starts on a new line, and the browsers automatically add some space (a margin) before and after the element.
+   A block-level element always takes up the full width available (stretches out to the left and right as far as it can).
+   Two commonly used block elements are: <p> and <div>.
+
+Inline Elements
+
+   An inline element does not start on a new line.
+   An inline element only takes up as much width as necessary.
+
+   Here are the inline elements in HTML:
+
+   <a>
+   <img>
+   <span>
+   <label>
+   <input>
+   <button>
+   <textarea>
+   <select>
+   <small>
+   <script>
+   <br>
+
+   <abbr>
+   <acronym>
+   <b>
+   <bdo>
+   <big>
+   <cite>
+   <code>
+   <dfn>
+   <em>
+   <i>
+   <kbd>
+   <map>
+   <object>
+   <output>
+   <q>
+   <samp>
+   <strong>
+   <sub>
+   <sup>
+   <time>
+   <tt>
+   <td>
+   <th>
+   <var>
+   <video>
+
+Inline-block elements 
+
+   They are similar to inline elements, except they can have width, height,
+   padding and margins added on all four sides.
+
+   <img>
+   <button>
+   <input>  -->
+
+
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Существуют 2 типа тегов:
+            1. Блочный  
+            2. Строчный -->
+
+
+    <!-- Блочные элементы (display: block) в отличие от строчных элементов 
+        занимают по умолчанию всю ширину блока-контейнера, 
+        в которую они помещены. По этому признаку можно легко определить, к какому способу отображения относится элемент. 
+        Высота блочного элемента по умолчанию определяется автоматически и зависит от содержимого, которое в него помещено. 
+        Блочный элемент можно представить как прямоугольник, который имеет ширину (width) и высоту (height). 
+        Ширину и высоту блочного элемента можно задавать вручную с помощью CSS свойств width и height. 
+        Также, блочные элементы имеют границы (border), которые можно оформлять с помощью стилей CSS. 
+        Кроме этого блочным элементам можно задавать отступы внешние (margin) и внутренние (padding). 
+        Внешний отступ (margin) – это отступ от границы (border) данного элемента до контейнера элемента или до соседних блочных элементов. 
+        Внутренний отступ (padding) – это отступ от границы (border) данного элемента до его содержимого. -->
+
+
+    <!-- Строчные элементы (display: inline) – это элементы, которые являются 
+        частью строки и занимают такое пространства, которое необходимо для отображения их содержимого.
+        Строчным элементам нельзя установить размеры (width и height), задать верхние и нижние отступы (margin).
+        Для строчного элемента, размещенного на одной линии, можно использовать padding, margin-left и margin-right, border.
+        Для строчного элемента, размещенного на нескольких строках padding, margin и border обычно не используют, 
+            т.к. они в этом случае бесполезны.
+
+ 
+    <!--ВАЖНО:  Блочные теги нельзя ставить внутар строчных тегов, исключением 
+                является тег <a>, внутр которого с не давных пор разрешили ставить блочный тег. В блочные теги можно ставить как блочные так и строчные теги. Строчные теги можно ставить внутар строчных тегов-->
+
+
+    <!-- Примеры элементов, которые имеют display: inline по умолчанию: 
+            <a>, <img>, <span>, <button>, <input>, <textarea>, <select>, <small>, <label>, <script>, <br>, <abbr>, <audio>, <b>, <bdo>, <canvas>, <cite>, <code>, <del>, <dfn>, <em>, <i>, <iframe>, <ins>, <kbd>, <mark>, <meter>, <q>, <s>, <samp>, <strong>, <sub>, <sup>, <td>, <th>, <var>, <video> -->
+
+
+    <!--header блочный тег, шапка сайта -->
+    <header>
+        <!--Обзац - блочный тег, испоьзовать только для абзацов     -   paragraph -->
+        <p>Шапка</p>
+    </header>
+
+    <!--nav - блочный тег, внутри пишем навигация сайта-->
+    <nav>
+        <p>Навигация</p>
+    </nav>
+
+    <!--div - блочный тег-->
+    <!--Class это универсальный атрибут который можем указать для любово тега   
+        html, значение class даем униаклное слова. Один и тот же класс можем задать любому тегу бескеонечно раз. Имя класса не может начинатся с цифр, дефиса, нижного подчеркивание-->
+    <div class="container">
+
+        <!--Загаловки блочные теги-->
+
+        <!-- Загаловок первого уровня исползуется на странице один раз -->
+        <h1>Загаловок первого уровня</h1>
+        <!-- Загаловоки от 2 до 6 уровня можно использовать много раз -->
+        <h2>Загаловок второго уровня</h2>
+
+        <!--span строчный тег, используется чтобы выбрать часть текста и делать манипуляции с этой частью, строчные теги идут в один ряд-->
+        <p>Lorem ipsum <span>dolor, sit amet consectetur adipisicing</span> elit. Odio, hic!</p>
+
+        <!--Ссылка строчный тег, несматря на то, что 2 строчные теги написал на 
+            разных строках, все равно они будут отображены на одной строке. Чтобы их ставить на разные строки надо ставить в блочный тег, например div  -->
+        <a href="voskia.com" target="_blank">Voskia</a>
+        <a href="Forms.html">Tutorial - forms</a>
+
+        <!--img строчный тег, 
+            Атрибут title показывает названия картинки при навидении мыш на картину. 
+            Атрибуты alt и title не обязательние, но для оптимизации сайта для поисковых систем стоит прописать их  -->
+        <img src="image/logo.svg" alt="Logo" title="Voskia logo">
+
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        <!--br перенос строки   -   break -->
+        <br>Provident debitis obcaecati error ducimus.!</p>
+
+        <!--Маркировочный список, блочный тег   -   unorder list -->
+        <ul>
+            <li>Toyota</li>
+            <li>Lexus</li>
+        </ul>
+
+        <!--Нумеровочный список, блочный тег    -   order list -->
+        <ol type="A" start="1">
+            <li>BMW</li>
+            <li>Mers</li>
+        </ol>
+
+    </div>
+
+    <!--footer блочный тег, внутри пишем футер сайта-->
+    <footer>
+        <p>Футер</p>
+    </footer>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+/*
+   element types
+      block
+      inline
+      inline-block
+   selectors
+      *        // universal
+      id
+      class
+      tag
+      compount selectors
+      css points
+   text styling
+      font-family
+      font-size
+      font-weight
+      font-stile
+      color
+      text-shadow
+      text-transform
+   block styling
+      border
+      margin
+      padding
+      outline
+   background
+      color
+      image
+      size
+      cover
+      attachment
+      position
+      gradient
+   pseudo selector
+      :hover
+      :active
+      :focus
+   pseudo elements
+      ::before
+      ::after
+   position
+      static
+      ralative
+      absolute
+      fixed
+      sticky
+   multyple classes
+      main class
+      modifier class
+   links
+   form
+   flexbox
+   grid
+   cursor: pointer
+=======================================
+
+=======================================
+responsive design (adaptive)
+
+   viewport meta tag
+   types of units
+      px
+      %
+      em
+      rem
+   line height
+   media queries
+   flex
+      flex-wrap 
+      flex basis 
+      flex-grow 
+      gap
+   viewport units
+      vh
+      vw
+   background-image
+      cover
+   style form elements
+   flexbox order
+   modifier classes
+   box-sizing
+   grid
+      grid-temlate-columns
+      grid-temlate-rows
+      grid-auto-columns
+      grid-auto-rows
+      grid-columns-start
+      grid-columns-end
+      grid-row-start
+      grid-row-end
+      grid-temlate-areas
+      grid-gap
+      minmax()
+      repeat()
+      fr
+=======================================
+*/
