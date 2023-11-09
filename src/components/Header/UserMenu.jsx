@@ -2,12 +2,13 @@ import { useState } from 'react'
 import styles from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeUser } from '../../redux/slices/userSlice'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function UserMenu() {
 
    const [userMenu, setUserMenu] = useState(false)
 
+   const navigate = useNavigate()
    const dispatch = useDispatch()
    const { email, displayName, photoURL } = useSelector(state => state.user.currentUser)
 
@@ -15,6 +16,7 @@ function UserMenu() {
    function handleLogOut() {
       localStorage.setItem('user', null)
       dispatch(removeUser())
+      navigate('/')
    }
 
    return (

@@ -14,23 +14,20 @@ function AllWords() {
 
 
 
-
-
-
-   useEffect(() => {
-      const fetchData = async () => {
-         try {
-            const querySnapshot = await getDocs(collection(db, "moduleA11"));
-            querySnapshot.forEach((doc) => {
-               // doc.data() is never undefined for query doc snapshots
-               console.log(doc.id, " => ", doc.data());
-            });
-         } catch (error) {
-            console.log(error)
-         }
-      }
-      // fetchData()
-   }, [])
+   // useEffect(() => {
+   //    const fetchData = async () => {
+   //       try {
+   //          const querySnapshot = await getDocs(collection(db, "moduleA11"));
+   //          querySnapshot.forEach((doc) => {
+   //             // doc.data() is never undefined for query doc snapshots
+   //             console.log(doc.id, " => ", doc.data());
+   //          });
+   //       } catch (error) {
+   //          console.log(error)
+   //       }
+   //    }
+   //    fetchData()
+   // }, [])
 
 
 

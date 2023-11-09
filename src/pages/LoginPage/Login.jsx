@@ -34,9 +34,24 @@ function Login() {
                   });
                   // Add "lessonSettings" collection for a new user
                   setDoc(doc(db, "lessonSettings", user.uid), {
-                     wordsPerLesson: 0,
-                     modules: [],
-                     typeOfExercises: []
+                     wordsCount: 10,
+                     modules: {
+                        All: false,
+                        A11: false,
+                        A12: false,
+                        A21: false,
+                        A22: false,
+                        B11: false,
+                        B12: false,
+                        B21: false,
+                        B22: false
+                     },
+                     exerciseTypes: {
+                        choose: true,
+                        listen: false,
+                        write: false,
+                        speak: false
+                     }
                   });
                   // Add "userProfile" collection for a new user
                   setDoc(doc(db, "userProfile", user.uid), {

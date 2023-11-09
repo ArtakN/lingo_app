@@ -150,7 +150,9 @@ export default function Home() {
  ******************************************************************************/
 
 // =============================================================================
-/* when we go from one page to any other, scroll page to end go to any other 
+/* scralled page on navigate
+
+   when we go from one page to any other, scroll page to end go to any other 
    3rd page, the 3rd page will be scrolled to the end, too. To go to the top on the new page, we need to write   */
 
 export default function Home() {
@@ -175,7 +177,7 @@ export default function Home() {
 // =============================================================================
 
 // =============================================================================
-// ************  children props in Routhing ******************
+// ************************  children props in Routhing ************************
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
@@ -207,4 +209,40 @@ function App() {
       </div>
    )
 }
+// =============================================================================
+
+// =============================================================================
+// useNavigate() and <Navigate to='' />
+
+/* The useNavigate() and <Navigate> are both part of the React Router library 
+   and are used for navigation, but they are used in different ways:
+
+   1. useNavigate is a hook that returns a function which we can use to 
+      programmatically navigate to different routes. It’s useful when we need to navigate in response to events other than a link click, such as form submissions or button clicks. Here’s an example:   */
+
+import { useNavigate } from 'react-router-dom';
+
+function MyComponent() {
+   const navigate = useNavigate();
+
+   return (
+      <button onClick={() => navigate('/')}>
+         Go to Home page
+      </button>
+   );
+}
+
+/* 2. <Navigate> is a component that changes the current location when it is 
+      rendered. It’s a component wrapper around useNavigate, and accepts all the same arguments as props. Here’s an example:  */
+import { Navigate } from 'react-router-dom';
+
+function MyComponent() {
+   const currentUser = false
+
+   return (
+      currentUser && <Navigate to="/some/path" />
+   );
+}
+
+/* In summary, useNavigate is typically used for imperative navigation(i.e., navigation that occurs in response to some event), while <Navigate> is used for declarative navigation (i.e., navigation that occurs as soon as its conditions are met). Hope this helps! Let me know if you have any other questions.  */
 // =============================================================================

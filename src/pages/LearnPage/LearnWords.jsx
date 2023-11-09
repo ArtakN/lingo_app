@@ -6,7 +6,7 @@ import { setLearnWords } from '../../redux/slices/learnSlice'
 function LearnWords() {
 
    const allWords = useSelector((state) => state.words.allWords)
-   const wordsCount = useSelector((state) => state.settings.wordsCount)
+   const wordsCount = useSelector((state) => state.lessonSettings.wordsCount)
    const dispatch = useDispatch()
 
    dispatch(setLearnWords(allWords.slice(0, wordsCount)))

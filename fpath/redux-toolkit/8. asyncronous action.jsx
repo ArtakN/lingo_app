@@ -2,19 +2,24 @@
       asyncronous actions. 
   
       In no case, inside redux we shouldn't create any side effects, like console.log, alert, any window action (like: window.scrall(0, 0)). 
-      we will write it in UI (components).
+      we need to write these in UI (components).
 
-      we will create asyncronous actions with createAsyncThunk() function of RTK. It let us to create a request, dispatchs, some redux actions in one function. 
+      In RTK we will create asyncronous actions using createAsyncThunk() function. It lets us to create a request, dispatchs, some redux actions in one function. */
 
-   in the slice folder we crete a pizzaSlice.js file and in it we create a asyncronous action and call it fetchPizzas and replace bussines logic from component to here.
-   createAsyncThunk() means that it is a asyncronous fanction. */
+      
+    
+
+// in pizzaSlice.js we import createAsyncThunk function
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const fetchPizzas = createAsyncThunk(
+/* then we create the thunk, and pass in it some params: 
+      -name of the slice (pizzas) / name of the action (fetchPizzasStatus)
+      -then we say that we need to do an async request  */
+export const fetchPizzas = createAsyncThunk(
    'pizzas/fetchPizzasStatus',
    async () => {
       const { data } = await axios.get(
-         `https://`
+         `https://...`
       )
       return data
    }
@@ -34,27 +39,40 @@ const pizzaSlice = createSlice({
    }
 })
 
+/* When we define async thunks using createAsyncThunk, it automatically generates three action types for each async operation: 
+   -one for the request (pending) 
+   -one for a successful response (fulfilled)
+   -one for a failed response (rejected)
+We can then handle these action types in your extraReducers field.
+
+For example, if you have an async thunk for fetching data from an API, you might handle the .fulfilled action type in your extraReducers to store the received data in your state. Here’s a simplified example:   */
 extraReducers: {
-   // if it is pending - we show loading, and 
-   [fetchPizzas.pending]: (state) => {
-      state.status = 'loading'
-      state.items = []
-   },
-      // if it is confirmed - we show success and 
-      [fetchPizzas.fulfilled]: (state, action) => {
-         state.status = action.payload
-         state.items = 'success'
-      },
-         // if it is rejected - we show error and clean pizzas
-         [fetchPizzas.rejected]: (state, action) => {
-            state.status = 'error'
-            state.items = []
-         }
+
+extraReducers: (builder) => {
+   // Add reducers for additional action types here, 
+   // the first case - pending is optional, we will handle it if loading state is needed (forr example during data loadin we want to show "Is loading ...")
+   builder.addCase(fetchPizzasStatus.pending, (state) => {
+      state.loading = 'Is pending...';
+   }).addCase(fetchPizzasStatus.fulfilled, (state, action) => {
+     // Add user to the state array
+     state.entities.push(action.payload)
+   }).addCase(fetchPizzasStatus.rejected, (state, action) => {
+      // handle error here
+      console.error('Failed to fetch lesson settings:', action.error);
+   });
+ },
 }
 
 export const { setItems } = pizzaSlice.actions
 
 export default pizzaSlice.reducer
+
+// -----------------------------------------------------------------------------
+
+// then we can dispatch the thunk from a component
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPizzasStatus } from './fetchPizzasStatus';
 // =============================================================================
 
 // =============================================================================

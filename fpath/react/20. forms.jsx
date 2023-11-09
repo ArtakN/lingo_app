@@ -155,28 +155,21 @@ function Form() {
       /* we get all of those from event.target target represents the element that is modify in the event   */
       const { name, value, type, checked } = event.target
       setFormData(prevFormData => {
-         /* we return an object, this object should have all of the properties of the prevFormData, 
-            but we want to update the property based on the name value that we pulled from input 
-            that is makeing this change   */
+         /* we return an object, this object should have all of the properties 
+            of the prevFormData, but we want to update the property based on the name value that we pulled from input that is makeing this change   */
          return {
             ...prevFormData,
-            /* we use here compited property syntex from ES6 []
-               the value of name noramlly should be value ([name]: value), if we don't have checkbox
-               beacause all of our other inputes updating "value" property on the input itself
-               however because we do have the chekcbox we are going to check 
-               if the "type" is "checkbox", and if it is then we want to set the "checked" property of
-               the chekcbox, if not then we can use the value property update our state  */
+            /* we use here compited property syntex from ES6 [], the value of 
+               name noramlly should be value ([name]: value), if we don't have checkbox beacause all of our other inputes updating "value" property on the input itself however because we do have the chekcbox we are going to check if the "type" is "checkbox", and if it is then we want to set the "checked" property of the chekcbox, if not then we can use the value property update our state  */
             [name]: type === "checkbox" ? checked : value
          }
       })
    }
 
-   /* because our submit button is inside the form element, it acts as a submit button automatically
-      so clicking the submit button will trigger submit event of the form and ran the this function */
+   /* because our submit button is inside the form element, it acts as a submit button automatically so clicking the submit button will trigger submit event of the form and ran the this function */
    function handleSubmit(event) {
 
-      /* writing this the page will be updated without loading
-         this is always going to be the first thing that we will do at the top of handleSubmit function  */
+      /* writing this makes the page will be updated without loading this is always going to be the first thing that we will do at the top of handleSubmit function  */
       event.preventDefault()
 
       /* This is copied from another function to show where we will write any other js logic in this function.
@@ -187,8 +180,7 @@ function Form() {
          console.log("Successfully signed up") :
          console.log("passwords do not match")
 
-      /* Also when submitting the form, if the person checked the "newsletter" checkbox, 
-         log "Thanks for signing up for our newsletter!" to the console. */
+      /* Also when submitting the form, if the person checked the "newsletter" checkbox, log "Thanks for signing up for our newsletter!" to the console*/
       formData.isFriendly && console.log("Thanks for signing up for our newsletter!")
    }
 
@@ -340,4 +332,59 @@ function Form() {
       - Can watch for the submit with an onSubmit handler on the `form` element.
       - Can trigger the form submit with a button click.
 */
+// =============================================================================
+
+// =============================================================================
+// Checkbox
+
+import styles from '../../pages/SettingsPage/Settings.module.scss'
+import { useState } from 'react'
+
+function Modules() {
+   const [modules, setModules] = useState({
+      All: false,
+      A11: false,
+      A12: false,
+      A21: false,
+      A22: false,
+      B11: false,
+      B12: false
+   })
+
+   const handleModulesChange = (event) => {
+      if (event.target.name === 'All') {
+         setModules({
+            All: event.target.checked,
+            A11: event.target.checked,
+            A12: event.target.checked,
+            A21: event.target.checked,
+            A22: event.target.checked,
+            B11: event.target.checked,
+            B12: event.target.checked
+         })
+      } else {
+         setModules({ ...modules, [event.target.name]: event.target.checked })
+      }
+   }
+
+
+   return (
+      <div className={styles.levelsBlock}>
+         <p className={styles.blockTitle}>Уровни</p>
+         <div className={styles.levels}>
+            <ul className={styles.checkboxList}>
+               <li><input type="checkbox" id='All' name='All' checked={modules.All} onChange={handleModulesChange} /><label htmlFor="All" >All</label></li>
+               <li><input type="checkbox" id='A11' name='A11' checked={modules.A11} onChange={handleModulesChange} /><label htmlFor="A11" >A 1.1</label></li>
+               <li><input type="checkbox" id='A12' name='A12' checked={modules.A12} onChange={handleModulesChange} /><label htmlFor="A12" >A 1.2</label></li>
+               <li><input type="checkbox" id='A21' name='A21' checked={modules.A21} onChange={handleModulesChange} /><label htmlFor="A21" >A 2.1</label></li>
+               <li><input type="checkbox" id='A22' name='A22' checked={modules.A22} onChange={handleModulesChange} /><label htmlFor="A22" >A 2.2</label></li>
+               <li><input type="checkbox" id='B11' name='B11' checked={modules.B11} onChange={handleModulesChange} /><label htmlFor="B11" >B 1.1</label></li>
+               <li><input type="checkbox" id='B12' name='B12' checked={modules.B12} onChange={handleModulesChange} /><label htmlFor="B12" >B 1.2</label></li>
+            </ul>
+         </div>
+      </div>
+   )
+}
+
+export default Modules
 // =============================================================================

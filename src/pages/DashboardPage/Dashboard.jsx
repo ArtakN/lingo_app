@@ -12,8 +12,6 @@ function Dashboard() {
 
    const userId = useSelector(state => state.user.currentUser.uid)
 
-
-
    useEffect(() => {
       const fetchData = async () => {
          try {

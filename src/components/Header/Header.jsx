@@ -3,7 +3,7 @@ import styles from './header.module.scss'
 import Search from './Search'
 import UserMenu from './UserMenu'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
 
@@ -11,14 +11,26 @@ export default function Header() {
 
    const currentUser = useSelector(state => state.user.currentUser)
 
+   useEffect(() => {
+      const handleScroll = () => {
+         setPageScrolled(window.scrollY > 0);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+         window.removeEventListener('scroll', handleScroll);
+      };
+   }, []);
+
    return (
-      <div className={styles.header}>
+      <div className={`${styles.header} ${pageScrolled && styles.headerScrolled}`}>
          <div className={styles.container}>
             <p className={styles.logo}><Link to='/'>Wortschatz</Link></p>
             <Search />
             <nav>
                <ul className={styles.navList}>
-                  <li className={styles.navItem}><Link to="/settings" cl>Learn</Link> </li>
+                  <li className={styles.navItem}><Link to="/lesson-parameters" cl>Learn</Link> </li>
                   <li className={styles.navItem}><Link to="/allwords">All words</Link></li>
                </ul>
                {

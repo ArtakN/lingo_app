@@ -4,6 +4,94 @@
   }
 }
 
+.lessonParameters {
+  padding: 100px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .paramsContainer {
+    background-color: #fff;
+    border: 1px solid #cfd6e4;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .paramsTitle {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+  }
+
+  .parameters {
+    display: flex;
+    flex-direction: column;
+
+    & div {
+      border-top: 1px solid #cfd6e4;
+      padding: 8px 0;
+    }
+
+    div:last-child {
+      border-bottom: 1px solid #cfd6e4;
+    }
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .noModuleSelected {
+    color: red;
+  }
+
+  .exerciseTypes {
+    list-style: none;
+    margin-left: 24px;
+  }
+
+  .buttons {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .btn {
+    border: 1px solid #0066ff;
+    height: 32px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #0066ff;
+  }
+
+  .startBtn {
+    background-color: #0066ff;
+    color: #fff;
+    outline: none;
+
+    &:hover {
+      background-color: #1f78ff;
+    }
+  }
+
+  .disabledBtn {
+    border: none;
+    height: 32px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: auto;
+  }
+}
+
 .learnCard {
   .container {
     max-width: 500px;

@@ -157,7 +157,9 @@ const f = myArray.splice(0, 1);
 // =============================================================================
 
 // =============================================================================
-/* The find(function() {}) method returns the first element in the provided 
+/* method fined()
+
+   The find(function() {}) method returns the first element in the provided 
    array that satisfies the provided testing function. If no values satisfy 
    the testing function, undefined is returned.   */
 const array1 = [5, 12, 8, 130, 44];

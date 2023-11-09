@@ -2,9 +2,10 @@
 
       -introduced in ECMAScript 2017 (A.K.A. ES8)
       -make asyncronous code appear to be sycnronous
-      -async keyword goes before the function (asyncronous function), and returns a promise
+      -async keyword goes before the function, and returns a promise (function become asyncronous)
       -await keyword goes before a method/function that returns a promise 
       (await - wait for the response)
+      -the await keyword makes JavaScript wait until those Promises resolve before moving on to the next line of code. This makes the code look like synchronous code, even though it’s still asynchronous.
 
       ***await can't work without parent async function. 
          Only inside async function we can use awaits blocks.

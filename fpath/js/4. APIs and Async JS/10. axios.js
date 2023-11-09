@@ -2,6 +2,7 @@
    axios
    async-await for axios
    error catching in axios
+   try/catch
 */
 
 // =============================================================================
@@ -100,7 +101,7 @@ try {
 } catch (error) {
 
 } finally {
-   /* finally will not get anything, code in finally will run anywahy is there error or not. Here we will write code that anyway need to run, dosen't mattar will we get accsess or error.
+   /* finally will not get anything, code in finally will run anyway is there error or not. Here we will write code that anyway need to run, dosen't mattar will we get accsess or error.
    for example in the code above we wrote setIsLoading(false) in both of section and in try and in catch sections, because we need to run it anywhere, so we can write it only in the finally section.  */
    setIsLoading(false)
 }

@@ -82,15 +82,28 @@
   }
 
   .startButton {
-    display: block;
+    width: 350px;
     background: #0066ff;
+    outline: none;
     color: #fff;
     height: 40px;
-    width: 350px;
     border-radius: 8px;
-    line-height: 40px;
     text-align: center;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 40px auto 0 auto;
+
+    &:hover {
+      background-color: #1f78ff;
+      border: none;
+    }
+
+    -webkit-transition: background 5ms ease;
+    -moz-transition: background 5ms ease;
+    -ms-transition: background 5ms ease;
+    -o-transition: background 5ms ease;
+    transition: background 5ms ease;
   }
 }

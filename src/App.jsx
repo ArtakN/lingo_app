@@ -10,6 +10,8 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import SignUp from './pages/SignupPage/SignUp'
 import Dashboard from './pages/DashboardPage/Dashboard'
 import { useSelector } from 'react-redux'
+import LessonParameters from './pages/LearnPage/LessonParameters'
+import AdminPanel from './pages/AdminPanelPage/AdminPanel'
 
 function App() {
 
@@ -24,11 +26,13 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/lesson-parameters' element={<LessonParameters />} />
         <Route path='/words/learn' element={<LearnWords />} />
         <Route path='/words/check' element={<CheckWords />} />
         <Route path='/allwords' element={<AllWords />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/admin' element={<AdminPanel />} />
         <Route path='/dashboard' element={<RequireAuth>
           <Dashboard />
         </RequireAuth>} />
