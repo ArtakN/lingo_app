@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import styles from '../../pages/LearnPage/LearnWords.module.scss'
+import styles from '../../pages/LessonPage/Lesson.module.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 export default function Card() {
 
-   const learnWords = useSelector((state) => state.learn.learnWords)
+   const learnWords = useSelector((state) => state.lesson.learnWords)
 
    const [index, setIndex] = useState(0)
 
@@ -46,27 +46,25 @@ export default function Card() {
 
    return (
       <div className={styles.learnCard}>
-         <div className={styles.container}>
-            <div className={styles.count}>
-               <p><span className={styles.current}>{index + 1}</span> / {learnWords.length}</p>
-            </div>
-            <div className={styles.card}>
-               <p className={styles.word}>{`${newWord.article} ${newWord.word}`}</p>
-               <p className={styles.meaning}>{newWord.meaning}</p>
-            </div>
-            <div className={styles.buttons}>
-               <button
-                  disabled={prevBtnIsVisable}
-                  style={prevBtnIsVisable ? { borderColor: '#ececec', color: '#B8B8B8', backgroundColor: '#ececec' } : {}}
-                  onClick={prevWord}
-                  type='button'
-                  className={`${styles.prevBtn} ${styles.btn}`}>
-                  Предыдущий
-               </button>
-               <button onClick={nextWord} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Следующий</button>
-            </div>
-            <CheckBtn index={index} learnWords={learnWords} />
+         <div className={styles.count}>
+            <p><span className={styles.current}>{index + 1}</span> / {learnWords.length}</p>
          </div>
+         <div className={styles.card}>
+            <p className={styles.word}>{`${newWord.article} ${newWord.de}`}</p>
+            <p className={styles.meaning}>{newWord.ru}</p>
+         </div>
+         <div className={styles.buttons}>
+            <button
+               disabled={prevBtnIsVisable}
+               style={prevBtnIsVisable ? { borderColor: '#ececec', color: '#B8B8B8', backgroundColor: '#ececec' } : {}}
+               onClick={prevWord}
+               type='button'
+               className={`${styles.prevBtn} ${styles.btn}`}>
+               Предыдущий
+            </button>
+            <button onClick={nextWord} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Следующий</button>
+         </div>
+         <CheckBtn index={index} learnWords={learnWords} />
       </div >
    )
 }
@@ -82,7 +80,7 @@ function CheckBtn({ index, learnWords }) {
 
    return (
       <>
-         {checkBtnIsVisable && <Link to='/words/check' className={`${styles.checkBtn} ${styles.btn}`}>Проверить</Link>}
+         {checkBtnIsVisable && <Link to='/lesson/check' className={`${styles.checkBtn} ${styles.btn}`}>Проверить</Link>}
       </>
    )
 }

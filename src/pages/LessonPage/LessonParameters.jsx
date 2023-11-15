@@ -1,11 +1,15 @@
-import styles from './LearnWords.module.scss'
+// Importing necessary modules and hooks
+import styles from './Lesson.module.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+// Defining the LessonParameters component
 function LessonParameters() {
 
+   // Using Redux to get the state of lessonSettings
    const lessonParameters = useSelector(state => state.lessonSettings)
 
+   // Checking if any module is selected
    const isModuleSelected = Object.values(lessonParameters.modules).some(value => value);
 
    return (
@@ -22,6 +26,7 @@ function LessonParameters() {
                <div className={styles.modules}>
                   <span>Модули:</span>
                   {
+                     // Filtering, sorting and reducing the modules to a string
                      Object.entries(lessonParameters.modules)
                         .filter(([key]) => key !== 'All') // Skip the 'All' property
                         .sort(([keyA], [keyB]) => keyA.localeCompare(keyB)) // Sort the keys in lexicographic order
@@ -36,11 +41,11 @@ function LessonParameters() {
                   }
                </div>
 
-
                <div className={styles.exercises}>
                   <span>Упражнения:</span>
                   <ul className={styles.exerciseTypes}>
                      {
+                        // Mapping over the exerciseTypes to create a list of exercises
                         Object.entries(lessonParameters.exerciseTypes).map(([key, value]) => {
                            if (value) {
                               let exerciseName;
@@ -60,7 +65,7 @@ function LessonParameters() {
                                  default:
                                     exerciseName = '';
                               }
-                              return <li key={key}>{exerciseName}</li>;
+                              return <li key={value}>{exerciseName}</li>;
                            }
                            return null;
                         })
@@ -73,8 +78,10 @@ function LessonParameters() {
                <Link to='/settings' className={`${styles.settingsBtn} ${styles.btn}`}>Настроить урок</Link>
                {isModuleSelected
                   ? (
-                     <Link to='/words/learn' className={`${styles.startBtn} ${styles.btn}`}>Начать урок</Link>
+                     // If a module is selected, allow the user to start the lesson
+                     <Link to='/lesson/learn' className={`${styles.startBtn} ${styles.btn}`}>Начать урок</Link>
                   ) : (
+                     // If no module is selected, disable the start lesson button
                      <button className={styles.disabledBtn} disabled>Начать урок</button>
                   )}
             </div>
@@ -83,4 +90,5 @@ function LessonParameters() {
    )
 }
 
+// Exporting the LessonParameters component
 export default LessonParameters

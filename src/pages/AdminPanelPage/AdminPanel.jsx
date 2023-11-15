@@ -2,6 +2,8 @@ import styles from './AdminPanel.module.scss'
 import { allWords, modules } from '../../data';
 import { db } from '../../firebase';
 import { setDoc, doc } from 'firebase/firestore';
+import { fetchWords } from '../../redux/slices/wordsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AdminPanel() {
 
@@ -23,6 +25,18 @@ function AdminPanel() {
       });
    }
 
+   const dispatch = useDispatch()
+
+
+   const showFetchedWords = () => {
+      dispatch(fetchWords())
+   }
+
+   useSelector(state => {
+      console.log(state.words.allWords)
+      console.log(state.words.modules)
+   })
+
    return (
       <div className={styles.adminPanel}>
          <div className={styles.container}>
@@ -33,7 +47,7 @@ function AdminPanel() {
                   <input type="text" placeholder='Word' />
                   <input type="text" placeholder='Translation' />
                </div>
-               <button className={styles.addWordButton}>Add</button>
+               <button className={styles.addWordButton} onClick={showFetchedWords}>Add</button>
             </div>
             <div className={styles.addAllWords}>
                <button className={styles.addToDb} onClick={addWordsToDb}>Add all words to db</button>

@@ -30,7 +30,7 @@ export default function Header() {
             <Search />
             <nav>
                <ul className={styles.navList}>
-                  <li className={styles.navItem}><Link to="/lesson-parameters" cl>Learn</Link> </li>
+                  <li className={styles.navItem}><Link to="/lesson/parameters" cl>Learn</Link> </li>
                   <li className={styles.navItem}><Link to="/allwords">All words</Link></li>
                </ul>
                {

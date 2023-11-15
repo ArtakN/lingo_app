@@ -1,25 +1,39 @@
 import { useEffect, useState } from 'react'
-import styles from './CheckWords.module.scss'
-import { useSelector } from 'react-redux'
+import styles from './Lesson.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setCorrectWords, setIncorrectWords } from '../../redux/slices/lessonSlice'
 
-// export default function CheckWords({ learnWords, allWords }) {
-export default function CheckWords() {
+export default function Check() {
 
-   const learnWords = useSelector((state) => state.learn.learnWords)
+   // Using Redux to get the state of learnWords and allWords
+   const learnWords = useSelector((state) => state.lesson.learnWords)
    const allWords = useSelector((state) => state.words.allWords)
 
+   const dispatch = useDispatch()
+
+   // Creating a new array for checking the words, the new arrays objects have aditional status and correct properties
    const checkList = learnWords.map(item => ({ ...item, status: '', correct: '' }))
 
+   // Getting a random index for selecting the current word
    const randomIndex = Math.floor(Math.random() * checkList.length)
 
+   // Defining state variables
    const [remainingWords, setRemainingWords] = useState(checkList.filter((_, index) => index !== randomIndex))
    const [showNextButton, setShowNextButton] = useState(false)
    const [correctCount, setCorrectCount] = useState(0)
    const [incorrectCount, setIncorrectCount] = useState(0)
+
+   const [correctAnswers, setCorrectAnswers] = useState([])
+   const [incorrectAnswers, setIncorrectAnswers] = useState([])
+
    const [reviewWords, setReviewWords] = useState([])
    const [currentWord, setCurrentWord] = useState(remainingWords[randomIndex])
    const [disabled, setDisabled] = useState(false)
 
+   const navigate = useNavigate()
+
+   // useEffect hook to update the reviewWords state whenever the currentWord changes
    useEffect(() => {
 
       let newWordsArray = [];
@@ -43,19 +57,22 @@ export default function CheckWords() {
 
    }, [currentWord])
 
-   // get a random word from allWords array
+   // Function to get a random word from allWords array
    function getRandomWord() {
       return allWords[Math.floor(Math.random() * allWords.length)]
    }
 
+   // Function to check if the selected word matches the current word
    function checkMatch(index) {
       let status = ''
       if (currentWord.meaning === reviewWords[index].meaning) {
          status = 'learned'
          setCorrectCount((prevCorrectCount) => { return prevCorrectCount + 1 })
+         setCorrectAnswers((prevCorrectWords) => { return [...prevCorrectWords, currentWord] })
       } else {
          status = 'notLearned'
          setIncorrectCount((prevIncorrectCount) => { return prevIncorrectCount + 1 })
+         setIncorrectAnswers((prevIncorrectWords) => { return [...prevIncorrectWords, currentWord] })
       }
 
       setDisabled(true)
@@ -72,22 +89,29 @@ export default function CheckWords() {
       }))
    }
 
+   // Function to set the next word for review
    const setNextWord = () => {
-      const newIndex = Math.floor(Math.random() * remainingWords.length);
-      setCurrentWord(remainingWords[newIndex]);
-      setRemainingWords(prevWords => prevWords.filter((_, index) => index !== newIndex))
-      setShowNextButton(false)
-      setDisabled(false)
+      if (remainingWords.length > 0) {
+         const newIndex = Math.floor(Math.random() * remainingWords.length);
+         setCurrentWord(remainingWords[newIndex]);
+         setRemainingWords(prevWords => prevWords.filter((_, index) => index !== newIndex))
+         setShowNextButton(false)
+         setDisabled(false)
+      } else {
+         dispatch(setCorrectWords(correctAnswers))
+         dispatch(setIncorrectWords(incorrectAnswers))
+         navigate('/lesson/result')
+      }
    }
 
    return (
-      <div className={styles.checkWords}>
-         <div className={styles.container}>
+      <div className={styles.check}>
+         <div className={styles.checkContainer}>
             <div className={styles.counts}>
                <p><span className={styles.correctCount}>{correctCount}</span> / <span className={styles.incorrectCount}>{incorrectCount}</span></p>
             </div>
             <div className={styles.card}>
-               <p>{currentWord.meaning}</p>
+               <p>{currentWord.ru}</p>
             </div>
             <ul className={styles.wordList}>
                {reviewWords.map((item, index) => (
@@ -99,7 +123,7 @@ export default function CheckWords() {
                      ${item.status === 'learned' ? styles.learned : ''} 
                      ${item.status === 'notLearned' ? styles.notLearned : ''}
                      ${disabled && styles.disabled}`}>
-                     {`${item.article} ${item.word}`}
+                     {`${item.article} ${item.de}`}
                   </li>
                ))}
             </ul>

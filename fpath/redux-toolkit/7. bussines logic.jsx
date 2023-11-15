@@ -20,7 +20,7 @@ try {
    -sometimes we will write it in UI (in components). We will create fetch 
    requests with  useEffect() hook
 
-   -sometimes we will it seperatly:
+   -sometimes we will write it seperatly:
       - if we use Vanila JS or React without RTK, we will write it in a 
          seperate js file
       - if we use React with RTK, we will write it in the redux toolkit, using 

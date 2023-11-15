@@ -1,9 +1,9 @@
-import styles from './LearnWords.module.scss'
+import styles from './Lesson.module.scss'
 import Card from '../../components/learn/Card'
 import { useSelector, useDispatch } from 'react-redux'
-import { setLearnWords } from '../../redux/slices/learnSlice'
+import { setLearnWords } from '../../redux/slices/lessonSlice'
 
-function LearnWords() {
+function Learn() {
 
    const allWords = useSelector((state) => state.words.allWords)
    const wordsCount = useSelector((state) => state.lessonSettings.wordsCount)
@@ -13,10 +13,11 @@ function LearnWords() {
 
    return (
       <div className={styles.learn}>
-         <div className={styles.container}></div>
-         <Card />
+         <div className={styles.container}>
+            <Card />
+         </div>
       </div >
    )
 }
 
-export default LearnWords
+export default Learn

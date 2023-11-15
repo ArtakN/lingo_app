@@ -21,9 +21,9 @@ function Search() {
    }
 
    const matchedWords = searchValue ? allWords.filter((obj) => {
-      return obj.word.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase());
-   }).map(({ word, article, meaning }) => {
-      return <li key={word}>{article + ' ' + word} - {meaning}</li>
+      return obj.de.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase());
+   }).map(({ id, de, article, ru }) => {
+      return <li key={id}>{article + ' ' + de} - {ru}</li>
    }) : [];
 
    return (<div className={styles.search}>

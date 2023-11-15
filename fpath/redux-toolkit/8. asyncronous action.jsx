@@ -6,9 +6,6 @@
 
       In RTK we will create asyncronous actions using createAsyncThunk() function. It lets us to create a request, dispatchs, some redux actions in one function. */
 
-      
-    
-
 // in pizzaSlice.js we import createAsyncThunk function
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -36,32 +33,28 @@ const pizzaSlice = createSlice({
       setItems(state, action) {
          state.items = action.payload
       },
-   }
+   },
+   /* When we define async thunks using createAsyncThunk, it automatically generates three action types for each async operation: 
+      -one for the request (pending) 
+      -one for a successful response (fulfilled)
+      -one for a failed response (rejected)
+   We can then handle these action types in our extraReducers field.
+
+   For example, if we have an async thunk for fetching data from an API, we might handle the .fulfilled action type in our extraReducers to store the received data in our state. Here’s a simplified example:   */
+   extraReducers: (builder) => {
+      // Add reducers for additional action types here, 
+      // the first case - pending is optional, we will handle it if loading state is needed (forr example during data loadin we want to show "Is loading ...")
+      builder.addCase(fetchPizzasStatus.pending, (state) => {
+         state.loading = 'Is pending...';
+      }).addCase(fetchPizzasStatus.fulfilled, (state, action) => {
+        // Add user to the state array
+        state.entities.push(action.payload)
+      }).addCase(fetchPizzasStatus.rejected, (state, action) => {
+         // handle error here
+         console.error('Failed to fetch lesson settings:', action.error);
+      });
+   },
 })
-
-/* When we define async thunks using createAsyncThunk, it automatically generates three action types for each async operation: 
-   -one for the request (pending) 
-   -one for a successful response (fulfilled)
-   -one for a failed response (rejected)
-We can then handle these action types in your extraReducers field.
-
-For example, if you have an async thunk for fetching data from an API, you might handle the .fulfilled action type in your extraReducers to store the received data in your state. Here’s a simplified example:   */
-extraReducers: {
-
-extraReducers: (builder) => {
-   // Add reducers for additional action types here, 
-   // the first case - pending is optional, we will handle it if loading state is needed (forr example during data loadin we want to show "Is loading ...")
-   builder.addCase(fetchPizzasStatus.pending, (state) => {
-      state.loading = 'Is pending...';
-   }).addCase(fetchPizzasStatus.fulfilled, (state, action) => {
-     // Add user to the state array
-     state.entities.push(action.payload)
-   }).addCase(fetchPizzasStatus.rejected, (state, action) => {
-      // handle error here
-      console.error('Failed to fetch lesson settings:', action.error);
-   });
- },
-}
 
 export const { setItems } = pizzaSlice.actions
 
@@ -76,7 +69,7 @@ import { fetchPizzasStatus } from './fetchPizzasStatus';
 // =============================================================================
 
 // =============================================================================
-/* thunkAPI is an additional utility th createAsyncThunk
+/* thunkAPI is an additional utility of createAsyncThunk
 
    thunkAPI is an object   */ 
 
