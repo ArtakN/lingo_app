@@ -13,6 +13,7 @@ function LessonResult() {
 
    function handleLessonWords() {
       dispatch(updateVocabulary({ userId, correctWords, incorrectWords }))
+      console.log(userId, correctWords, incorrectWords)
    }
 
    return (

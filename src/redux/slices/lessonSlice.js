@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 export const updateVocabulary = createAsyncThunk(
    'lesson/updateVocabulary',
@@ -11,7 +13,7 @@ export const updateVocabulary = createAsyncThunk(
 );
 
 const initialState = {
-   learnWords: [],
+   lessonWords: [],
    correctWords: [],
    incorrectWords: []
 }
@@ -21,7 +23,7 @@ const lessonSlice = createSlice({
    initialState,
    reducers: {
       setLearnWords: (state, action) => {
-         state.learnWords = action.payload
+         state.lessonWords = action.payload
       },
       setCorrectWords: (state, action) => {
          state.correctWords = action.payload

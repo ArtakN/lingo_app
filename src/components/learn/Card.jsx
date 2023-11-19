@@ -5,18 +5,18 @@ import { useSelector } from 'react-redux'
 
 export default function Card() {
 
-   const learnWords = useSelector((state) => state.lesson.learnWords)
+   const lessonWords = useSelector((state) => state.lesson.lessonWords)
 
    const [index, setIndex] = useState(0)
 
-   let newWord = learnWords[index]
+   let newWord = lessonWords[index]
 
    // "prevBtn" becomes and stay visable when all learnWords shown
    const [prevBtnIsVisable, setPrevBtnIsVisable] = useState(true)
    const [indexReachedEnd, setIndexReachedEnd] = useState(false)
 
    useEffect(() => {
-      if (index === learnWords.length - 1) {
+      if (index === lessonWords.length - 1) {
          setIndexReachedEnd(true)
       }
 
@@ -29,9 +29,9 @@ export default function Card() {
 
 
    function nextWord() {
-      if (index < learnWords.length - 1) {
+      if (index < lessonWords.length - 1) {
          setIndex(prevIndex => prevIndex + 1)
-      } else if (index === learnWords.length - 1) {
+      } else if (index === lessonWords.length - 1) {
          setIndex(0)
       }
    }
@@ -40,14 +40,14 @@ export default function Card() {
       if (index > 0) {
          setIndex(prevIndex => prevIndex - 1)
       } else if (index === 0) {
-         setIndex(learnWords.length - 1)
+         setIndex(lessonWords.length - 1)
       }
    }
 
    return (
       <div className={styles.learnCard}>
          <div className={styles.count}>
-            <p><span className={styles.current}>{index + 1}</span> / {learnWords.length}</p>
+            <p><span className={styles.current}>{index + 1}</span> / {lessonWords.length}</p>
          </div>
          <div className={styles.card}>
             <p className={styles.word}>{`${newWord.article} ${newWord.de}`}</p>
@@ -64,18 +64,18 @@ export default function Card() {
             </button>
             <button onClick={nextWord} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Следующий</button>
          </div>
-         <CheckBtn index={index} learnWords={learnWords} />
+         <CheckBtn index={index} lessonWords={lessonWords} />
       </div >
    )
 }
 
-function CheckBtn({ index, learnWords }) {
-   // "Check" button becomes and stay visable when all learnWords words shown
+function CheckBtn({ index, lessonWords }) {
+   // "Check" button becomes and stay visable when all lessonWords words shown
    const [checkBtnIsVisable, setCheckBtnIsVisable] = useState(false)
 
    // useEffect lets the button to become and stay visable
    useEffect(() => {
-      index === learnWords.length - 1 && setCheckBtnIsVisable(true)
+      index === lessonWords.length - 1 && setCheckBtnIsVisable(true)
    }, [index])
 
    return (

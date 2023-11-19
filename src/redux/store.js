@@ -4,6 +4,7 @@ import lessonSettingsSlice from "./slices/lessonSettingsSlice";
 import wordsSlice from "./slices/wordsSlice";
 import lessonSlice from "./slices/lessonSlice";
 import userSlice from "./slices/userSlice";
+import dashboardSlice from "./slices/dashboardSlice";
 
 export const store = configureStore({
    reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
       lessonSettings: lessonSettingsSlice,
       lesson: lessonSlice,
       user: userSlice,
+      dashboard: dashboardSlice
    },
 })
 

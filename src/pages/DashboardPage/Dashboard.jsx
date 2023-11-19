@@ -1,42 +1,28 @@
 import styles from './Dashboard.module.scss'
-import { doc, getDoc } from "firebase/firestore";
-import { db } from '../../firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { fetchVocabulary } from '../../redux/slices/dashboardSlice';
 
 function Dashboard() {
 
-   const [learnedWords, setLearnedWords] = useState([])
-   const [wordsToRepeat, setWordsToRepeat] = useState([])
    const [selectedTab, setSelectedTab] = useState('learned')
-
    const userId = useSelector(state => state.user.currentUser.uid)
+   const learnedWords = useSelector((state) => state.dashboard.learnedWords)
+   const wordsToRepeat = useSelector((state) => state.dashboard.wordsToRepeat)
+
+   const dispatch = useDispatch()
+
 
    useEffect(() => {
-      const fetchData = async () => {
-         try {
-            const docRef = doc(db, "vocabulary", userId);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-               setLearnedWords(docSnap.data().learnedWords)
-               setWordsToRepeat(docSnap.data().wordsToRepeat)
-            } else {
-               console.log("No such document!");
-            }
-         } catch (error) {
-            console.log(error)
-         }
-      }
-      fetchData()
-   }, [])
+      dispatch(fetchVocabulary(userId))
+   }, [userId])
 
    const learnedWordsList = learnedWords.map(word => {
-      return <li key={word}>{word}</li>
+      return <li key={word.id}>{word.de}</li>
    })
 
    const wordsToRepeatList = wordsToRepeat.map(word => {
-      return <li key={word}>{word}</li>
+      return <li key={word.id}>{word.de}</li>
    })
 
    return (

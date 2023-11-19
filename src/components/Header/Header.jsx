@@ -30,7 +30,12 @@ export default function Header() {
             <Search />
             <nav>
                <ul className={styles.navList}>
-                  <li className={styles.navItem}><Link to="/lesson/parameters" cl>Learn</Link> </li>
+                  {
+                     !currentUser ?
+                        <li className={styles.navItem}><Link to="/login" >Lesson</Link> </li>
+                        :
+                        <li className={styles.navItem}><Link to="/lesson/parameters" >Lesson</Link> </li>
+                  }
                   <li className={styles.navItem}><Link to="/allwords">All words</Link></li>
                </ul>
                {
@@ -38,7 +43,6 @@ export default function Header() {
                      ?
                      <div className={styles.userAuth}>
                         <div className={styles.logIn}><Link to="/login">Log in</Link></div>
-                        <div className={styles.signUp}><Link to="/signup">Sign up</Link></div>
                      </div>
                      :
                      <UserMenu />

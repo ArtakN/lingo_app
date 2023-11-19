@@ -6,14 +6,14 @@ import { setCorrectWords, setIncorrectWords } from '../../redux/slices/lessonSli
 
 export default function Check() {
 
-   // Using Redux to get the state of learnWords and allWords
-   const learnWords = useSelector((state) => state.lesson.learnWords)
+   // Using Redux to get the state of lessonWords and allWords
+   const lessonWords = useSelector((state) => state.lesson.lessonWords)
    const allWords = useSelector((state) => state.words.allWords)
 
    const dispatch = useDispatch()
 
    // Creating a new array for checking the words, the new arrays objects have aditional status and correct properties
-   const checkList = learnWords.map(item => ({ ...item, status: '', correct: '' }))
+   const checkList = lessonWords.map(item => ({ ...item, status: '', correct: '' }))
 
    // Getting a random index for selecting the current word
    const randomIndex = Math.floor(Math.random() * checkList.length)

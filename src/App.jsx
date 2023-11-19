@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage/HomePage'
 import Settings from './pages/SettingsPage/Settings'
 import AllWords from './pages/AllWordsPage/AllWords'
 import Login from './pages/LoginPage/Login'
-import SignUp from './pages/SignupPage/SignUp'
 import Dashboard from './pages/DashboardPage/Dashboard'
 import LessonParameters from './pages/LessonPage/LessonParameters'
 import Learn from './pages/LessonPage/Learn'
@@ -49,7 +48,6 @@ function App() {
         <Route path='/lesson/result' element={<LessonResult />} />
         <Route path='/allwords' element={<AllWords />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
         <Route path='/admin' element={<AdminPanel />} />
         <Route path='/dashboard' element={<RequireAuth>
           <Dashboard />
