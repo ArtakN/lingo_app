@@ -6,50 +6,42 @@
     width: 700px;
     margin: 0 auto;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .tabs {
-    padding-left: 24px;
-    display: flex;
-    gap: 8px;
-  }
-
-  .tabBtn {
-    outline: none;
-    border: 1px solid #cfd6e4;
-    height: 32px;
-    display: flex;
-    line-height: 10px;
-    border-radius: 5px 5px 0 0;
-  }
-
-  .active {
     background-color: #fff;
-    z-index: 1;
-    border-bottom: none;
-  }
-
-  .activeTab {
-    width: 700px;
+    padding: 32px;
+    border-radius: 10px;
     border: 1px solid #cfd6e4;
-    border-radius: 0 0 8px 8px;
-    background-color: white;
-    padding: 24px;
-    top: 31px;
-    flex-grow: 1;
-    position: relative;
-    top: -1px;
-    overflow: auto;
   }
 
-  .tabInfo {
+  .learnedWordsBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px dotted #cfd6e4;
     margin-bottom: 24px;
-    border-bottom: 1px dashed #cfd6e4;
-    padding-bottom: 16px;
+  }
+
+  .learnedWords {
     font-size: 20px;
     font-weight: 500;
+  }
+
+  .repeatBtn {
+    border: 1px solid #0066ff;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #0066ff;
+    outline: none;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    &:hover {
+      background-color: #0066ff;
+      color: #fff;
+    }
   }
 
   .wordsList {

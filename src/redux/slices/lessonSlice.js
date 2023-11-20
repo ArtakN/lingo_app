@@ -4,11 +4,11 @@ import { db } from "../../firebase";
 
 export const updateVocabulary = createAsyncThunk(
    'lesson/updateVocabulary',
-   async ({ userId, correctWords, incorrectWords }) => {
+   async ({ userId, correctWords }) => {
       // Creating a reference to the document in Firestore
       const docRef = doc(db, "vocabulary", userId);
       // Updating the document
-      await updateDoc(docRef, { learnedWords: correctWords, wordsToRepeat: incorrectWords });
+      await updateDoc(docRef, { learnedWords: arrayUnion(...correctWords) });
    }
 );
 
@@ -32,16 +32,17 @@ const lessonSlice = createSlice({
          state.incorrectWords = action.payload
       }
    },
-   extraReducers: {
-      [updateVocabulary.pending]: (state, action) => {
-         // handle the state when updateVocabulary is pending
-      },
-      [updateVocabulary.fulfilled]: (state, action) => {
-         // handle the state when updateVocabulary is fulfilled
-      },
-      [updateVocabulary.rejected]: (state, action) => {
-         // handle the state when updateVocabulary is rejected
-      }
+   extraReducers: (builder) => {
+      builder
+         .addCase(updateVocabulary.pending, (state, action) => {
+            // handle the state when updateVocabulary is pending
+         })
+         .addCase(updateVocabulary.fulfilled, (state, action) => {
+            // handle the state when updateVocabulary is fulfilled
+         })
+         .addCase(updateVocabulary.rejected, (state, action) => {
+            // handle the state when updateVocabulary is rejected
+         });
    }
 })
 

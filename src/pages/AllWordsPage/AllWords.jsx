@@ -45,8 +45,8 @@ function AllWords() {
          <div className={styles.words}>
             <div className={styles.container}>
                <div className={styles.wordsInfo}>
-                  <div className={styles.wordsCount}>{wordsList.length} слов</div>
-                  <Link to='/settings' className={styles.learnButton}>Учить</Link>
+                  <div className={styles.wordsCount}>Слова в модуле: {wordsList.length}</div>
+                  <Link to='/lesson/parameters' className={styles.learnButton}>Учить слова</Link>
                </div>
                <div className={styles.modules} onMouseLeave={() => setDropMenue(false)}>
                   <label className={styles.activeModuleLabel}>Модули:</label>

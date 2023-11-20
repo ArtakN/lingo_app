@@ -1,5 +1,5 @@
 a {
-  font-weight: 500;
+  font-weight: 600;
   color: #000;
   text-decoration: inherit;
 }
@@ -10,7 +10,6 @@ a {
 
 .header {
   height: 70px;
-  background-color: #fff;
   border-bottom: 1px solid #ececec;
   position: fixed;
   width: 100%;
@@ -20,6 +19,8 @@ a {
   .container {
     height: 100%;
     display: flex;
+    background-color: #fff;
+
     align-items: center;
     justify-content: space-between;
     padding: 24px;
@@ -29,6 +30,7 @@ a {
 
   .logo {
     font-size: 1.6rem;
+    flex: 1 0 25%;
 
     a {
       color: #0066ff;
@@ -39,6 +41,9 @@ a {
   nav {
     display: flex;
     align-items: center;
+    flex: 1 0 25%;
+    min-width: 280px;
+    justify-content: flex-end;
   }
 
   .navList {
@@ -87,10 +92,14 @@ a {
       color: #fff;
     }
   }
+
+  .searchWrapper {
+    flex: 1 1 50%;
+  }
 }
 
 .search {
-  width: 600px;
+  width: 100%;
   position: relative;
 
   input {
@@ -209,3 +218,23 @@ a {
     }
   }
 }
+// =============================================================================
+// for 1024 and less
+@media (max-width: 1024px) {
+  .header {
+    nav {
+      // display: none;
+    }
+
+    .burgerMenu {
+      display: block;
+    }
+  }
+}
+// =============================================================================
+// 768px
+
+// =============================================================================
+// 480px
+
+// =============================================================================

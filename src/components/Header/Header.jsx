@@ -27,7 +27,9 @@ export default function Header() {
       <div className={`${styles.header} ${pageScrolled && styles.headerScrolled}`}>
          <div className={styles.container}>
             <p className={styles.logo}><Link to='/'>Wortschatz</Link></p>
-            <Search />
+            <div className={styles.searchWrapper}>
+               <Search />
+            </div>
             <nav>
                <ul className={styles.navList}>
                   {

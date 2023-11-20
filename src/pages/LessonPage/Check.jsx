@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import styles from './Lesson.module.scss'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setCorrectWords, setIncorrectWords } from '../../redux/slices/lessonSlice'
@@ -11,8 +11,9 @@ export default function Check() {
    const allWords = useSelector((state) => state.words.allWords)
 
    const dispatch = useDispatch()
+   const navigate = useNavigate()
 
-   // Creating a new array for checking the words, the new arrays objects have aditional status and correct properties
+   // Creating a new array for checking the words, the new arrays objects have aditional "status" and "correct" properties
    const checkList = lessonWords.map(item => ({ ...item, status: '', correct: '' }))
 
    // Getting a random index for selecting the current word
@@ -21,8 +22,8 @@ export default function Check() {
    // Defining state variables
    const [remainingWords, setRemainingWords] = useState(checkList.filter((_, index) => index !== randomIndex))
    const [showNextButton, setShowNextButton] = useState(false)
-   const [correctCount, setCorrectCount] = useState(0)
-   const [incorrectCount, setIncorrectCount] = useState(0)
+   // const [correctCount, setCorrectCount] = useState(0)
+   // const [incorrectCount, setIncorrectCount] = useState(0)
 
    const [correctAnswers, setCorrectAnswers] = useState([])
    const [incorrectAnswers, setIncorrectAnswers] = useState([])
@@ -30,8 +31,6 @@ export default function Check() {
    const [reviewWords, setReviewWords] = useState([])
    const [currentWord, setCurrentWord] = useState(remainingWords[randomIndex])
    const [disabled, setDisabled] = useState(false)
-
-   const navigate = useNavigate()
 
    // useEffect hook to update the reviewWords state whenever the currentWord changes
    useEffect(() => {
@@ -67,11 +66,11 @@ export default function Check() {
       let status = ''
       if (currentWord.meaning === reviewWords[index].meaning) {
          status = 'learned'
-         setCorrectCount((prevCorrectCount) => { return prevCorrectCount + 1 })
+         // setCorrectCount((prevCorrectCount) => { return prevCorrectCount + 1 })
          setCorrectAnswers((prevCorrectWords) => { return [...prevCorrectWords, currentWord] })
       } else {
          status = 'notLearned'
-         setIncorrectCount((prevIncorrectCount) => { return prevIncorrectCount + 1 })
+         // setIncorrectCount((prevIncorrectCount) => { return prevIncorrectCount + 1 })
          setIncorrectAnswers((prevIncorrectWords) => { return [...prevIncorrectWords, currentWord] })
       }
 
@@ -108,7 +107,7 @@ export default function Check() {
       <div className={styles.check}>
          <div className={styles.checkContainer}>
             <div className={styles.counts}>
-               <p><span className={styles.correctCount}>{correctCount}</span> / <span className={styles.incorrectCount}>{incorrectCount}</span></p>
+               <p><span className={styles.correctCount}>{correctAnswers.length}</span> / <span className={styles.incorrectCount}>{incorrectAnswers.length}</span></p>
             </div>
             <div className={styles.card}>
                <p>{currentWord.ru}</p>

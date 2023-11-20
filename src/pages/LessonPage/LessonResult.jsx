@@ -1,6 +1,7 @@
 import styles from './Lesson.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateVocabulary } from '../../redux/slices/lessonSlice'
+import { useNavigate } from 'react-router-dom'
 
 function LessonResult() {
 
@@ -10,10 +11,11 @@ function LessonResult() {
    const userId = useSelector((state) => state.user.currentUser.uid)
 
    const dispatch = useDispatch()
+   const navigate = useNavigate()
 
-   function handleLessonWords() {
-      dispatch(updateVocabulary({ userId, correctWords, incorrectWords }))
-      console.log(userId, correctWords, incorrectWords)
+   function storeLessonResult() {
+      dispatch(updateVocabulary({ userId, correctWords }))
+      navigate('/dashboard')
    }
 
    return (
@@ -27,7 +29,7 @@ function LessonResult() {
             </div>
             <div className={styles.resultButtons}>
                <button className={`${styles.repeatBtn} ${styles.btn}`}>Повторить урок</button>
-               <button className={`${styles.saveResultBtn} ${styles.btn}`} onClick={handleLessonWords}>Сохранить резултат</button>
+               <button className={`${styles.saveResultBtn} ${styles.btn}`} onClick={storeLessonResult}>Сохранить резултат</button>
             </div>
          </div>
       </div>

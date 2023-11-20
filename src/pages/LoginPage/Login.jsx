@@ -1,10 +1,10 @@
 import styles from './Login.module.scss'
-import { Link, useNavigate } from 'react-router-dom'
-import { auth, provider, db } from "../../firebase";
+import { useNavigate } from 'react-router-dom'
+import { auth, provider } from "../../firebase";
 import { signInWithPopup, getAdditionalUserInfo } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/slices/userSlice';
-import { doc, setDoc } from "firebase/firestore";
+import { initializeNewUser } from '../../redux/slices/userSlice';
 
 function Login() {
 
@@ -24,63 +24,15 @@ function Login() {
 
             const isNewUser = getAdditionalUserInfo(result).isNewUser
             const user = result.user
+            const userId = user.uid
 
             if (isNewUser) {
-               try {
-                  // Add "vocabualry" collection for a new user
-                  setDoc(doc(db, "vocabulary", user.uid), {
-                     learnedWords: [],
-                     wordsToRepeat: []
-                  });
-                  // Add "lessonSettings" collection for a new user
-                  setDoc(doc(db, "lessonSettings", user.uid), {
-                     wordsCount: 10,
-                     modules: {
-                        All: false,
-                        A11: false,
-                        A12: false,
-                        A21: false,
-                        A22: false,
-                        B11: false,
-                        B12: false,
-                        B21: false,
-                        B22: false
-                     },
-                     exerciseTypes: {
-                        choose: true,
-                        listen: false,
-                        write: false,
-                        speak: false
-                     }
-                  });
-                  // Add "userProfile" collection for a new user
-                  setDoc(doc(db, "userProfile", user.uid), {
-                     id: user.uid,
-                     email: user.email,
-                     displayName: user.displayName,
-                     photoUrl: user.photoURL
-                  });
-               } catch (error) {
-                  console.log(error)
-               }
-
+               dispatch(initializeNewUser({ userId, user }))
             }
-
          }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-
-            // const email = error.customData.email;
-
-            // The AuthCredential type that was used.
-            // const credential = provider.credentialFromError(error);
-            // ...
+            console.log(error)
          });
    }
-
-
 
    return !currentUser ? (
       <div className={styles.login}>
@@ -103,7 +55,6 @@ function Login() {
    ) : (
       navigate("/lesson/parameters")
    )
-
 }
 
 export default Login

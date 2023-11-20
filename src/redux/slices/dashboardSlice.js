@@ -18,7 +18,6 @@ export const fetchVocabulary = createAsyncThunk(
 
 const initialState = {
    learnedWords: [],
-   wordsToRepeat: []
 }
 
 const dashboardSlice = createSlice({
@@ -28,9 +27,6 @@ const dashboardSlice = createSlice({
    extraReducers: (builder) => {
       builder.addCase(fetchVocabulary.fulfilled, (state, action) => {
          state.learnedWords = action.payload.learnedWords;
-         state.wordsToRepeat = action.payload.wordsToRepeat;
-
-         console.log(state)
       });
    }
 })

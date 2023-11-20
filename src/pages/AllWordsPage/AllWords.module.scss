@@ -34,6 +34,13 @@
     padding: 4px 16px;
     border-radius: 5px;
     color: #0066ff;
+    height: 35px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    &:hover {
+      background-color: #0066ff;
+      color: #fff;
+    }
   }
 
   .modules {
