@@ -12,6 +12,10 @@ function MobileMenu() {
       setMobileNav(prevMobileNav => !prevMobileNav)
    }
 
+   function handleMenuItem() {
+      setMobileNav(false)
+   }
+
    return (
       <div className={styles.mobileMenu}>
          <div className={styles.burgerIcon} onClick={handleMobileMenu}>
@@ -26,13 +30,19 @@ function MobileMenu() {
                </svg>
             </div>
             <ul className={styles.mobileNavList}>
-               <Link to='/lesson/parameters'><li>Lesson</li></Link>
-               <Link to='/allwords'><li>All words</li></Link>
+               {!currentUser
+                  ?
+                  <Link to='/login'><li onClick={handleMenuItem}>Lesson</li></Link>
+                  :
+                  <Link to='/lesson/parameters'><li onClick={handleMenuItem}>Lesson</li></Link>
+               }
+
+               <Link to='/allwords'><li onClick={handleMenuItem}>All words</li ></Link>
             </ul>
             {
                !currentUser
                &&
-               <div className={styles.logIn}><Link to="/login">Log in</Link></div>
+               <Link to="/login" className={styles.logIn} onClick={handleMenuItem}>Log in</Link>
             }
          </nav>
       </div >
