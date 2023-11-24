@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
 import Search from './Search'
 import UserMenu from './UserMenu'
+import MobileMenu from './MobileMenu'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Header() {
+function Header() {
 
    const [pageScrolled, setPageScrolled] = useState(false)
 
@@ -30,7 +31,7 @@ export default function Header() {
             <div className={styles.searchWrapper}>
                <Search />
             </div>
-            <nav>
+            <nav className={styles.desktopMenu}>
                <ul className={styles.navList}>
                   {
                      !currentUser ?
@@ -50,7 +51,10 @@ export default function Header() {
                      <UserMenu />
                }
             </nav>
+            <MobileMenu />
          </div>
       </div>
    )
 }
+
+export default Header
