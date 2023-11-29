@@ -261,6 +261,7 @@ a {
       width: 20px;
       margin-left: auto;
       height: 20px;
+      margin-bottom: 24px;
     }
 
     .mobileNav {
@@ -282,23 +283,15 @@ a {
     .mobileNavList {
       list-style: none;
       font-size: 18px;
-      margin-top: 40px;
+      border-top: 1px solid #dfe1e5;
+      border-bottom: 1px solid #dfe1e5;
 
       li {
-        padding: 8px;
-        border-bottom: 1px solid #dfe1e5;
-      }
-
-      li:first-child {
-        border-top: 1px solid #dfe1e5;
-      }
-
-      li:hover {
-        color: #0066ff;
+        padding: 16px;
       }
     }
 
-    .logIn {
+    .logInBtn {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -306,6 +299,64 @@ a {
       height: 32px;
       color: #fff;
       margin-top: 32px;
+      background-color: #0066ff;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+
+    .logOutBtn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 32px;
+      margin-top: 32px;
+      background-color: #eff2f5;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+  }
+
+  .mobileUserMenu {
+    margin-top: 24px;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid #dfe1e5;
+      padding: 16px;
+    }
+
+    a {
+      color: #213547;
+      font-weight: normal;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .userPhoto {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .userName {
+      font-weight: 600;
+      color: #000;
+      font-size: 18px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 8px;
+
+      li {
+        padding-block: 8px;
+      }
     }
   }
 }
@@ -344,15 +395,9 @@ a {
       border-radius: 4px;
       background-color: #eff2f5;
       border: none;
+      font-weight: 500;
+      font-size: 16px;
     }
-  }
-
-  .search {
-  }
-
-  .mobileMenu {
-    flex: 0 1 0;
-    margin-left: 24px;
   }
 }
 // =============================================================================

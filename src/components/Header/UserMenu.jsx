@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import styles from './Header.module.scss'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeUser } from '../../redux/slices/userSlice'
 import { Link, useNavigate } from 'react-router-dom'
