@@ -22,7 +22,7 @@ function LessonSettings() {
    const [exerciseTypes, setExerciseTypes] = useState(fetchedExerciseTypes)
 
    // Getting the user ID from the Redux store
-   const userId = useSelector(state => state.user.currentUser.uid)
+   const userId = useSelector(state => state.auth.currentUser.uid)
    const dispatch = useDispatch()
 
    // I moved the lesson settings fetching logic to App component to avoid unnecessary database fetch when user changes tabs between lessonSetting and accountSettings and for LessonParams component. In this case the lesson settings will be fetched only once when the App component mounts.

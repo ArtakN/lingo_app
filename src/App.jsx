@@ -17,10 +17,15 @@ import { fetchWords } from './redux/slices/wordsSlice'
 import { fetchLessonSettings } from './redux/slices/lessonSettingsSlice'
 
 function App() {
-  const userId = useSelector(state => state.user.currentUser && state.user.currentUser.uid)
 
+  // Selectors to get the current user
+  const currentUser = useSelector(state => state.auth.currentUser)
+  const userId = currentUser ? currentUser.uid : null
+
+  // Hook for dispatching actions
   const dispatch = useDispatch();
 
+  // Fetching the words from the database when the component mounts
   useEffect(() => {
     dispatch(fetchWords());
   }, [dispatch]);
@@ -32,7 +37,7 @@ function App() {
     }
   }, [dispatch, userId])
 
-
+  // Function to check if the user is authenticated
   function RequireAuth({ children }) {
     return userId ? children : <Navigate to='/login' />
   }
@@ -42,17 +47,39 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/lesson/parameters' element={<LessonParameters />} />
-        <Route path='/lesson/learn' element={<Learn />} />
-        <Route path='/lesson/check' element={<Check />} />
-        <Route path='/lesson/result' element={<LessonResult />} />
         <Route path='/allwords' element={<AllWords />} />
         <Route path='/login' element={<Login />} />
         <Route path='/admin' element={<AdminPanel />} />
-        <Route path='/dashboard' element={<RequireAuth>
-          <Dashboard />
-        </RequireAuth>} />
-        <Route path='/settings' element={<Settings />} />
+        <Route path='/lesson/parameters' element={
+          <RequireAuth >
+            <LessonParameters />
+          </RequireAuth>}
+        />
+        <Route path='/lesson/learn' element={
+          <RequireAuth >
+            <Learn />
+          </RequireAuth>}
+        />
+        <Route path='/lesson/check' element={
+          <RequireAuth >
+            <Check />
+          </RequireAuth>}
+        />
+        <Route path='/lesson/result' element={
+          <RequireAuth >
+            <LessonResult />
+          </RequireAuth>}
+        />
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>}
+        />
+        <Route path='/settings' element={
+          <RequireAuth >
+            <Settings />
+          </RequireAuth>}
+        />
       </Routes>
     </div>
   )

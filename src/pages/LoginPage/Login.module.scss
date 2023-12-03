@@ -6,27 +6,29 @@
 
   .container {
     width: 500px;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     color: #253741;
     background-color: #fff;
-    padding: 100px 50px;
+    padding: 70px 24px;
     border: 1px solid #dfe1e5;
     border-radius: 10px;
+    height: 400px;
   }
 
   .title {
     text-align: center;
     font-size: 24px;
-    margin-bottom: 48px;
+    margin-bottom: 56px;
     font-weight: 600;
   }
 
   .btnBlock {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 100%;
     gap: 16px;
-    margin-bottom: 40px;
   }
 
   .loginBtn {
@@ -58,6 +60,16 @@
     span {
       color: #0066ff;
       font-weight: 600;
+    }
+  }
+}
+// =============================================================================
+@media (max-width: 532px) {
+  .login {
+    padding: 16px;
+
+    .container {
+      width: 100%;
     }
   }
 }

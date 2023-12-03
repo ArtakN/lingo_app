@@ -3,8 +3,9 @@ import searchSlice from "./slices/searchSlice";
 import lessonSettingsSlice from "./slices/lessonSettingsSlice";
 import wordsSlice from "./slices/wordsSlice";
 import lessonSlice from "./slices/lessonSlice";
-import userSlice from "./slices/userSlice";
+import newUserSlice from "./slices/newUserSlice";
 import dashboardSlice from "./slices/dashboardSlice";
+import authSlice from "./slices/authSlice";
 
 export const store = configureStore({
    reducer: {
@@ -12,8 +13,9 @@ export const store = configureStore({
       search: searchSlice,
       lessonSettings: lessonSettingsSlice,
       lesson: lessonSlice,
-      user: userSlice,
-      dashboard: dashboardSlice
+      newUser: newUserSlice,
+      dashboard: dashboardSlice,
+      auth: authSlice
    },
 })
 

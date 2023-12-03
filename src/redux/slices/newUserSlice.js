@@ -4,8 +4,8 @@ import { db } from "../../firebase";
 
 // Asyncronous thunk for setting inital data for a new user
 export const initializeNewUser = createAsyncThunk(
-   'user/initializeNewUser',
-   async ({ userId, user }) => {
+   'newUser/initializeNewUser',
+   async ({ userId, currentUser }) => {
       try {
          // Add "vocabualry" collection for a new user
          setDoc(doc(db, "vocabulary", userId), {
@@ -34,10 +34,10 @@ export const initializeNewUser = createAsyncThunk(
          });
          // Add "userProfile" collection for a new user
          setDoc(doc(db, "userProfile", userId), {
-            id: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            photoUrl: user.photoURL
+            id: currentUser.uid,
+            email: currentUser.email,
+            displayName: currentUser.displayName,
+            photoUrl: currentUser.photoURL
          });
       } catch (error) {
          console.log(error)
@@ -46,15 +46,12 @@ export const initializeNewUser = createAsyncThunk(
 );
 
 const initialState = {
-   currentUser: JSON.parse(localStorage.getItem('user')) || null
 }
 
-const userSlice = createSlice({
-   name: 'user',
+const newUserSlice = createSlice({
+   name: 'newUser',
    initialState,
    reducers: {
-      setUser: (state) => { state.currentUser = JSON.parse(localStorage.getItem('user')) },
-      removeUser: (state) => { state.currentUser = null }
    },
    extraReducers: (builder) => {
       builder
@@ -70,5 +67,4 @@ const userSlice = createSlice({
    }
 })
 
-export const { setUser, removeUser } = userSlice.actions
-export default userSlice.reducer
+export default newUserSlice.reducer

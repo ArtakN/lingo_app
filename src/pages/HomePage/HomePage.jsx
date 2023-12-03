@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 
 function Home() {
-   const currentUser = useSelector(state => state.user.currentUser)
+   const currentUser = useSelector(state => state.auth.currentUser)
 
    return (
       <div className={styles.home}>

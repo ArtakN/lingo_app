@@ -11,7 +11,7 @@ function Header() {
    const [pageScrolled, setPageScrolled] = useState(false)
    const [searchVisable, setSearchVisable] = useState(true)
 
-   const currentUser = useSelector(state => state.user.currentUser)
+   const currentUser = useSelector(state => state.auth.currentUser)
 
    useEffect(() => {
       const handleScroll = () => {

@@ -15,16 +15,16 @@ function LessonParameters() {
    return (
       <div className={styles.lessonParameters}>
          <div className={styles.paramsContainer}>
-            <h1 className={styles.paramsTitle}>Параметры урока</h1>
+            <h1 className={styles.paramsTitle}>Lesson parameters</h1>
             <div className={styles.parameters}>
 
                <div className={styles.wordsCount}>
-                  <span>Количества слов в уроке: </span>
+                  <span>Words in the lesson: </span>
                   {lessonParameters.wordsCount}
                </div>
 
                <div className={styles.modules}>
-                  <span>Модули:</span>
+                  <span>Modules:</span>
                   {
                      // Filtering, sorting and reducing the modules to a string
                      Object.entries(lessonParameters.modules)
@@ -37,12 +37,12 @@ function LessonParameters() {
                               acc.push(formattedKey);
                            }
                            return acc;
-                        }, []).join(' | ') || <span className={styles.noModuleSelected}> Не выбран модуль</span>
+                        }, []).join(' | ') || <span className={styles.noModuleSelected}> No module selected</span>
                   }
                </div>
 
                <div className={styles.exercises}>
-                  <span>Упражнения:</span>
+                  <span>Exercises:</span>
                   <ul className={styles.exerciseTypes}>
                      {
                         // Mapping over the exerciseTypes to create a list of exercises
@@ -51,16 +51,16 @@ function LessonParameters() {
                               let exerciseName;
                               switch (key) {
                                  case 'choose':
-                                    exerciseName = 'Выбирать вариант';
+                                    exerciseName = 'Сhoose an option';
                                     break;
                                  case 'listen':
-                                    exerciseName = 'Слушать';
+                                    exerciseName = 'Hear';
                                     break;
                                  case 'write':
-                                    exerciseName = 'Написать';
+                                    exerciseName = 'Write';
                                     break;
                                  case 'speak':
-                                    exerciseName = 'Говорить';
+                                    exerciseName = 'Speak';
                                     break;
                                  default:
                                     exerciseName = '';
@@ -75,14 +75,14 @@ function LessonParameters() {
 
             </div>
             <div className={styles.buttons}>
-               <Link to='/settings' className={`${styles.settingsBtn} ${styles.btn}`}>Настроить урок</Link>
+               <Link to='/settings' className={`${styles.settingsBtn} ${styles.btn}`}>Edit lesson</Link>
                {isModuleSelected
                   ? (
                      // If a module is selected, allow the user to start the lesson
-                     <Link to='/lesson/learn' className={`${styles.startBtn} ${styles.btn}`}>Начать урок</Link>
+                     <Link to='/lesson/learn' className={`${styles.startBtn} ${styles.btn}`}>Start lesson</Link>
                   ) : (
                      // If no module is selected, disable the start lesson button
-                     <button className={styles.disabledBtn} disabled>Начать урок</button>
+                     <button className={styles.disabledBtn} disabled>Start lesson</button>
                   )}
             </div>
          </div>

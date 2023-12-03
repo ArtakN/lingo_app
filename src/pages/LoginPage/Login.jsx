@@ -1,40 +1,36 @@
 import styles from './Login.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { auth, provider } from "../../firebase";
-import { signInWithPopup, getAdditionalUserInfo } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../redux/slices/userSlice';
-import { initializeNewUser } from '../../redux/slices/userSlice';
+import { initializeNewUser } from '../../redux/slices/newUserSlice';
+import { logInWithGoogle } from '../../redux/slices/authSlice';
+import { useEffect } from 'react';
 
 function Login() {
 
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
-   const currentUser = useSelector(state => state.user.currentUser)
+   const currentUser = useSelector(state => state.auth.currentUser)
+   const userId = currentUser ? currentUser.uid : null
+   const isNewUser = useSelector(state => state.auth.isNewUser)
 
    const handleGoogleLogIn = () => {
-
-      signInWithPopup(auth, provider)
-         .then((result) => {
-
-            localStorage.setItem('user', JSON.stringify(result.user))
-
-            dispatch(setUser())
-
-            const isNewUser = getAdditionalUserInfo(result).isNewUser
-            const user = result.user
-            const userId = user.uid
-
-            if (isNewUser) {
-               dispatch(initializeNewUser({ userId, user }))
-            }
-         }).catch((error) => {
-            console.log(error)
-         });
+      dispatch(logInWithGoogle())
    }
 
-   return !currentUser ? (
+   // Navigate to "/lesson/parameters" page if user is logged in
+   useEffect(() => {
+      if (userId) {
+         navigate("/lesson/parameters");
+      }
+   }, [currentUser, navigate]);
+
+   // Initialize new user if the isNewUser is true
+   useEffect(() => {
+      isNewUser && dispatch(initializeNewUser({ userId, currentUser }))
+   }, [isNewUser])
+
+   return (
       <div className={styles.login}>
          <div className={styles.container}>
             <p className={styles.title}>Log In</p>
@@ -52,8 +48,6 @@ function Login() {
             </div>
          </div>
       </div>
-   ) : (
-      navigate("/lesson/parameters")
    )
 }
 
