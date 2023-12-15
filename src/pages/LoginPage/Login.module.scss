@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 
   .container {
     width: 500px;
@@ -70,6 +70,7 @@
 
     .container {
       width: 100%;
+      padding: 70px 16px;
     }
   }
 }

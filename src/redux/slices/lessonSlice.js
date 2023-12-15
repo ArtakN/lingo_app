@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export const updateVocabulary = createAsyncThunk(
@@ -36,12 +36,15 @@ const lessonSlice = createSlice({
       builder
          .addCase(updateVocabulary.pending, (state, action) => {
             // handle the state when updateVocabulary is pending
+            console.log("pending")
          })
          .addCase(updateVocabulary.fulfilled, (state, action) => {
             // handle the state when updateVocabulary is fulfilled
+            console.log('updated')
          })
          .addCase(updateVocabulary.rejected, (state, action) => {
             // handle the state when updateVocabulary is rejected
+            console.log(action.payload)
          });
    }
 })

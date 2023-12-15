@@ -104,7 +104,7 @@ export default function Check() {
    }
 
    return (
-      <div className={styles.check}>
+      <div className={styles.lessonCheck}>
          <div className={styles.checkContainer}>
             <div className={styles.counts}>
                <p><span className={styles.correctCount}>{correctAnswers.length}</span> / <span className={styles.incorrectCount}>{incorrectAnswers.length}</span></p>
@@ -126,7 +126,7 @@ export default function Check() {
                   </li>
                ))}
             </ul>
-            {showNextButton && <button type='button' className={styles.btn} onClick={setNextWord}>Следующий
+            {showNextButton && <button type='button' className={styles.nextBtn} onClick={setNextWord}>Next
             </button>}
          </div>
       </div>

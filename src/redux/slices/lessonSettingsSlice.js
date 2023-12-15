@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 // Asynchronous thunk for fetching lesson settings from Firestore
@@ -29,9 +29,6 @@ export const updateLessonSettings = createAsyncThunk(
       const docRef = doc(db, "lessonSettings", userId);
       // Updating the document
       await updateDoc(docRef, newSettings);
-
-      // Return the new settings to update the state
-      return newSettings;
    }
 );
 

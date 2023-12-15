@@ -2,6 +2,7 @@ import styles from './Settings.module.scss'
 import Slider from '../../components/settings/Slider'
 import Modules from '../../components/settings/Modules'
 import Exercises from '../../components/settings/Exercises'
+import Loading from '../../components/Loading/Loading'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateLessonSettings } from '../../redux/slices/lessonSettingsSlice'
@@ -35,12 +36,12 @@ function LessonSettings() {
 
    // Rendering the component
    return (
-      loading ? <div>Loading...</div> : (
+      loading ? <Loading /> : (
          <div div className={styles.lessonSettings} >
             <Slider fetchedWordsCount={fetchedWordsCount} wordsCount={wordsCount} setWordsCount={setWordsCount} />
             <Modules modules={modules} setModules={setModules} fetchedModules={fetchedModules} />
             <Exercises exerciseTypes={exerciseTypes} setExerciseTypes={setExerciseTypes} fetchedExerciseTypes={fetchedExerciseTypes} />
-            <button className={styles.startButton} onClick={handleLessonSettings} >Сохранить</button>
+            <button className={styles.saveButton} onClick={handleLessonSettings} >Save</button>
          </div >
       )
    )

@@ -29,13 +29,13 @@
     font-weight: 500;
   }
 
-  .learnButton {
+  .learnBtn {
     border: 1px solid #0066ff;
     padding: 4px 16px;
     border-radius: 5px;
     color: #0066ff;
     height: 35px;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
       background-color: #0066ff;
@@ -127,6 +127,39 @@
       line-height: 28px;
       background-color: #f9f9f9;
       border-top: 1px solid #e9e3e3;
+    }
+  }
+}
+// =============================================================================
+@media (max-width: 1024px) {
+  .words {
+    padding: 40px;
+  }
+}
+// =============================================================================
+@media (max-width: 748px) {
+  .words {
+    padding: 24px;
+    .container {
+      width: 100%;
+    }
+
+    .wordsList {
+      li {
+        span:last-child {
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+}
+// =============================================================================
+@media (max-width: 480px) {
+  .words {
+    padding: 16px;
+    overflow-x: scroll;
+    .container {
+      width: 448px;
     }
   }
 }

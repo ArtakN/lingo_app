@@ -60,9 +60,9 @@ export default function Card() {
                onClick={prevWord}
                type='button'
                className={`${styles.prevBtn} ${styles.btn}`}>
-               Предыдущий
+               Previous
             </button>
-            <button onClick={nextWord} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Следующий</button>
+            <button onClick={nextWord} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Next</button>
          </div>
          <CheckBtn index={index} lessonWords={lessonWords} />
       </div >
@@ -80,7 +80,7 @@ function CheckBtn({ index, lessonWords }) {
 
    return (
       <>
-         {checkBtnIsVisable && <Link to='/lesson/check' className={`${styles.checkBtn} ${styles.btn}`}>Проверить</Link>}
+         {checkBtnIsVisable && <Link to='/lesson/check' className={`${styles.checkBtn} ${styles.btn}`}>Check</Link>}
       </>
    )
 }

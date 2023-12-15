@@ -1,4 +1,3 @@
-// Importing necessary functions from Redux Toolkit and Firebase Firestore
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";

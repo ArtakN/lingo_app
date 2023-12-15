@@ -12,8 +12,8 @@ function Settings() {
       <div className={styles.settings}>
          <div className={styles.container}>
             <div className={styles.tabs}>
-               <button className={`${styles.tabBtn} ${selectedTab === 'lessonSettings' && styles.active} `} type='button' onClick={() => setSelectedTab('lessonSettings')}>Настройки урока</button>
-               <button className={`${styles.tabBtn} ${selectedTab === 'profileSettings' && styles.active}`} type='button' onClick={() => setSelectedTab('profileSettings')}>Настройки профиля</button>
+               <button className={`${styles.tabBtn} ${selectedTab === 'lessonSettings' && styles.active} `} type='button' onClick={() => setSelectedTab('lessonSettings')}>Lesson settings</button>
+               <button className={`${styles.tabBtn} ${selectedTab === 'profileSettings' && styles.active}`} type='button' onClick={() => setSelectedTab('profileSettings')}>Profile settings</button>
             </div>
             {selectedTab === 'lessonSettings' ?
                (
