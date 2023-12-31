@@ -2,7 +2,9 @@
 import styles from './Lesson.module.scss'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchVocabulary } from '../../redux/slices/dashboardSlice'
+import { useEffect } from 'react'
 
 // Defining the LessonParameters component
 function LessonParameters() {
@@ -10,9 +12,17 @@ function LessonParameters() {
    // Using Redux to get the state of lessonSettings
    const lessonParameters = useSelector(state => state.lessonSettings)
    const loading = useSelector(state => state.lessonSettings.loading)
+   const userId = useSelector(state => state.auth.currentUser.uid)
+
+   const dispatch = useDispatch()
 
    // Checking if any module is selected
    const isModuleSelected = Object.values(lessonParameters.modules).some(value => value);
+
+   //  Fetching vocabulary (learned words) - to keep up to date vacabulary words
+   useEffect(() => {
+      dispatch(fetchVocabulary(userId))
+   })
 
    return (
       loading ? <Loading /> : (

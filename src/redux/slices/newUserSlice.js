@@ -51,8 +51,7 @@ const initialState = {
 const newUserSlice = createSlice({
    name: 'newUser',
    initialState,
-   reducers: {
-   },
+   reducers: {},
    extraReducers: (builder) => {
       builder
          .addCase(initializeNewUser.pending, (state, action) => {

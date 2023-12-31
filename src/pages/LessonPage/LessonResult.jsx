@@ -16,7 +16,6 @@ function LessonResult() {
 
    // Function to store the result of the lesson and navigate to the dashboard
    function storeLessonResult() {
-      console.log(userId, correctWords)
       dispatch(updateVocabulary({ userId, correctWords })) // Update the vocabulary in the Redux store, adding correctly answered words
       navigate('/dashboard') // Navigate to the dashboard
    }

@@ -34,9 +34,10 @@ function Dashboard() {
    // Getting the active module
    const activeModule = modules.length > 0 ? modules[activeModuleIndex].module : [];
 
+   //  Fetching vocabulary (learned words) - to keep it up to date
    useEffect(() => {
       dispatch(fetchVocabulary(userId))
-   }, [userId])
+   }, [userId, dispatch])
 
    const learnedWordsList = learnedWords.map(word => {
       return (<li key={word.id}>

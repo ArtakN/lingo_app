@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchWords } from './redux/slices/wordsSlice'
 import { fetchLessonSettings } from './redux/slices/lessonSettingsSlice'
+import { fetchVocabulary } from './redux/slices/dashboardSlice'
 
 function App() {
 
@@ -36,6 +37,11 @@ function App() {
       dispatch(fetchLessonSettings(userId))
     }
   }, [dispatch, userId])
+
+  //  Fetching vocabulary (learned words)
+  useEffect(() => {
+    dispatch(fetchVocabulary(userId))
+  }, [userId])
 
   // Function to check if the user is authenticated
   function RequireAuth({ children }) {

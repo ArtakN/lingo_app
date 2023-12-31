@@ -22,7 +22,7 @@ const lessonSlice = createSlice({
    name: 'lesson',
    initialState,
    reducers: {
-      setLearnWords: (state, action) => {
+      setLessonWords: (state, action) => {
          state.lessonWords = action.payload
       },
       setCorrectWords: (state, action) => {
@@ -49,5 +49,5 @@ const lessonSlice = createSlice({
    }
 })
 
-export const { setLearnWords, setCorrectWords, setIncorrectWords } = lessonSlice.actions
+export const { setLessonWords, setCorrectWords, setIncorrectWords } = lessonSlice.actions
 export default lessonSlice.reducer
