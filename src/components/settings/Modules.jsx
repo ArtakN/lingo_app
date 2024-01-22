@@ -14,12 +14,10 @@ function Modules({ modules, setModules, fetchedModules }) {
       if (event.target.name === 'All') {
          setModules({
             All: event.target.checked,
-            A11: event.target.checked,
-            A12: event.target.checked,
-            A21: event.target.checked,
-            A22: event.target.checked,
-            B11: event.target.checked,
-            B12: event.target.checked
+            A1: event.target.checked,
+            A2: event.target.checked,
+            B1: event.target.checked,
+            B2: event.target.checked
          })
          // on specific checkbox click only the checkbox state changes
       } else {
@@ -37,7 +35,7 @@ function Modules({ modules, setModules, fetchedModules }) {
                      type="checkbox"
                      id='All'
                      name='All'
-                     checked={modules.All}
+                     checked={modules.Al}
                      onChange={handleModulesChange}
                   />
                   <label htmlFor="All" >All</label>
@@ -45,60 +43,40 @@ function Modules({ modules, setModules, fetchedModules }) {
                <li>
                   <input
                      type="checkbox"
-                     id='A11'
-                     name='A11'
-                     checked={modules.A11}
+                     id='A1'
+                     name='A1'
+                     checked={modules.A1}
                      onChange={handleModulesChange}
                   />
-                  <label htmlFor="A11" >A 1.1</label>
+                  <label htmlFor="A1" >A 1</label>
                </li>
                <li>
                   <input
                      type="checkbox"
-                     id='A12'
-                     name='A12'
-                     checked={modules.A12}
+                     id='A2'
+                     name='A2'
+                     checked={modules.A2}
                      onChange={handleModulesChange}
                   />
-                  <label htmlFor="A12" >A 1.2</label>
+                  <label htmlFor="A2" >A 2</label>
                </li>
                <li>
                   <input
                      type="checkbox"
-                     id='A21'
-                     name='A21'
-                     checked={modules.A21}
+                     id='B1'
+                     name='B1'
+                     checked={modules.B1}
                      onChange={handleModulesChange}
-                  />
-                  <label htmlFor="A21" >A 2.1</label>
-               </li>
-               <li>
-                  <input
-                     type="checkbox"
-                     id='A22'
-                     name='A22'
-                     checked={modules.A22}
-                     onChange={handleModulesChange}
-                  />
-                  <label htmlFor="A22" >A 2.2</label>
-               </li>
-               <li>
-                  <input
-                     type="checkbox"
-                     id='B11'
-                     name='B11'
-                     checked={modules.B11}
-                     onChange={handleModulesChange}
-                  /><label htmlFor="B11" >B 1.1</label>
+                  /><label htmlFor="B1" >B 1</label>
                </li>
                <li><input
                   type="checkbox"
-                  id='B12'
-                  name='B12'
-                  checked={modules.B12}
+                  id='B2'
+                  name='B2'
+                  checked={modules.B2}
                   onChange={handleModulesChange}
                />
-                  <label htmlFor="B12" >B 1.2</label>
+                  <label htmlFor="B2" >B 2</label>
                </li>
             </ul>
          </div>

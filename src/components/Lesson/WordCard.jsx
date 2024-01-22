@@ -1,6 +1,7 @@
 import styles from '../../pages/LessonPage/Lesson.module.scss'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 
@@ -20,6 +21,8 @@ function WordCard() {
    const [indexReachedEnd, setIndexReachedEnd] = useState(false)
 
    const [checkBtnIsVisable, setCheckBtnIsVisable] = useState(false)
+
+   const navigate = useNavigate()
 
    // Effect hook to update button visibility based on the current index
    useEffect(() => {
@@ -86,9 +89,8 @@ function WordCard() {
             </button>
             <button onClick={() => nextWord()} type='button' className={`${styles.nextBtn} ${styles.btn}`}>Next</button>
          </div>
-         {/* <CheckButton wordIndex={wordIndex} lessonWords={lessonWords} /> */}
          <div>
-            {checkBtnIsVisable && <Link to='/lesson/check' className={`${styles.checkBtn} ${styles.btn}`}>Check</Link>}
+            {checkBtnIsVisable && <Link to={'/lesson/check'} className={`${styles.checkBtn} ${styles.btn}`}>Check</Link>}
          </div>
       </div >
    )

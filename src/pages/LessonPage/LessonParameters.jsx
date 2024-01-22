@@ -1,28 +1,65 @@
-// Importing necessary modules and hooks
 import styles from './Lesson.module.scss'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchVocabulary } from '../../redux/slices/dashboardSlice'
+import { setLessonWords } from '../../redux/slices/lessonSlice'
 import { useEffect } from 'react'
 
-// Defining the LessonParameters component
 function LessonParameters() {
 
-   // Using Redux to get the state of lessonSettings
    const lessonParameters = useSelector(state => state.lessonSettings)
    const loading = useSelector(state => state.lessonSettings.loading)
    const userId = useSelector(state => state.auth.currentUser.uid)
+   const modules = useSelector(state => state.words.modules)
+   const learnedWords = useSelector((state) => state.dashboard.learnedWords)
 
    const dispatch = useDispatch()
 
    // Checking if any module is selected
    const isModuleSelected = Object.values(lessonParameters.modules).some(value => value);
 
-   //  Fetching vocabulary (learned words) - to keep up to date vacabulary words
+   // Fetching vocabulary (learned words) - to keep up to date vocabulary words
    useEffect(() => {
       dispatch(fetchVocabulary(userId))
-   })
+   }, [])
+
+   // Filtering the selected modules
+   const checkedModules = Object.entries(lessonParameters.modules).filter(([key, value]) => value && key !== 'All').map(([key, value]) => key);
+
+   const checkedWords = []
+
+   // Looping through the selected modules and the modules to find matching ones
+   for (let i = 0; i < checkedModules.length; i++) {
+      for (let j = 0; j < modules.length; j++) {
+         if (modules[j].name === checkedModules[i]) {
+            let worsArray = Object.values(modules[j].moduleWords)
+            checkedWords.push(...worsArray);
+         }
+      }
+   }
+
+   // Filtering out the words that the user has already learned
+   const newWords = checkedWords.filter(checkedWord =>
+      !learnedWords.some(learnedWord => learnedWord.de === checkedWord.de)
+   );
+
+   const lessonWords = []
+
+   // Randomly selecting words for the lesson
+   for (let i = 0; i < lessonParameters.wordsCount; i++) {
+      if (newWords.length === 0) {
+         break;
+      }
+      const randomIndex = Math.floor(Math.random() * newWords.length)
+      lessonWords.push(newWords[randomIndex])
+      newWords.splice(randomIndex, 1)
+   }
+
+   // Dispatching an action to set the words for the lesson
+   function handleClick() {
+      dispatch(setLessonWords(lessonWords))
+   }
 
    return (
       loading ? <Loading /> : (
@@ -45,8 +82,8 @@ function LessonParameters() {
                            .sort(([keyA], [keyB]) => keyA.localeCompare(keyB)) // Sort the keys in lexicographic order
                            .reduce((acc, [key, value], index, array) => {
                               if (value) {
-                                 // Convert the key to the desired format (e.g., 'A11' becomes 'A 1.1')
-                                 const formattedKey = ' ' + key[0] + ' ' + key[1] + '.' + key[2];
+                                 // Convert the key to the desired format (e.g., 'A1' becomes 'A 1')
+                                 const formattedKey = ' ' + key[0] + ' ' + key.slice(1);
                                  acc.push(formattedKey);
                               }
                               return acc;
@@ -92,14 +129,14 @@ function LessonParameters() {
                   {isModuleSelected
                      ? (
                         // If a module is selected, allow the user to start the lesson
-                        <Link to='/lesson/learn' className={`${styles.startBtn} ${styles.btn}`}>Start lesson</Link>
+                        <Link to='/lesson/learn' className={`${styles.startBtn} ${styles.btn}`} onClick={() => handleClick()}>Start lesson</Link>
                      ) : (
                         // If no module is selected, disable the start lesson button
                         <button className={styles.disabledBtn} disabled>Start lesson</button>
                      )}
                </div>
             </div>
-         </div>
+         </div >
       )
    )
 }

@@ -9,7 +9,7 @@ export const fetchWords = createAsyncThunk(
       // Fetching all documents from the 'words' collection
       const querySnapshot = await getDocs(collection(db, "words"));
       const words = [];
-      const modules = [{ name: 'All', module: {} }]; // add an 'All' module
+      const modules = [{ name: 'All', moduleWords: {} }]; // add an 'All' module
       // Looping through each document
       querySnapshot.forEach((doc) => {
          const moduleData = doc.data();
@@ -17,10 +17,10 @@ export const fetchWords = createAsyncThunk(
          for (let field in moduleData) {
             const word = moduleData[field];
             words.push(word);
-            modules[0].module[field] = word; // add the word to the 'All' module
+            modules[0].moduleWords[field] = word; // add the word to the 'All' module
          }
          // Adding the document data to the modules array
-         modules.push({ name: doc.id, module: moduleData });
+         modules.push({ name: doc.id, moduleWords: moduleData });
       });
       // Returning the words and modules arrays
       return { words, modules };

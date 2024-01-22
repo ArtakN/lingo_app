@@ -1,7 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebase";
 
+export const setLessonWordsToLocalStorage = createAsyncThunk(
+   'lesson/setLessonWordsToLocalStorage',
+   async ({ lessonWords }) => {
+      localStorage.setItem("lessonWords", JSON.stringify(lessonWords))
+   }
+)
+
+// adding learnedWords to the vacabulary
 export const updateVocabulary = createAsyncThunk(
    'lesson/updateVocabulary',
    async ({ userId, correctWords }) => {
@@ -12,10 +20,21 @@ export const updateVocabulary = createAsyncThunk(
    }
 );
 
+export const setNewWords = createAsyncThunk(
+   'lesson/setNewWords',
+   async (modules) => {
+
+   }
+);
+
+const parsedLessonWords = localStorage.getItem('lessonWords')
+const lessonWords = parsedLessonWords !== 'undefined' && parsedLessonWords !== null ? JSON.parse(localStorage.getItem('lessonWords')) : []
+
 const initialState = {
-   lessonWords: [],
+   lessonWords: lessonWords,
+   newWords: [],
    correctWords: [],
-   incorrectWords: []
+   incorrectWords: [],
 }
 
 const lessonSlice = createSlice({
@@ -23,7 +42,8 @@ const lessonSlice = createSlice({
    initialState,
    reducers: {
       setLessonWords: (state, action) => {
-         state.lessonWords = action.payload
+         localStorage.setItem("lessonWords", JSON.stringify(action.payload))
+         // state.lessonWords = action.payload
       },
       setCorrectWords: (state, action) => {
          state.correctWords = action.payload

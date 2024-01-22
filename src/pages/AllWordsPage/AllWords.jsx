@@ -19,7 +19,7 @@ function AllWords() {
       setActiveModuleIndex(index)
       setDropMenue(prevDropMenu => !prevDropMenu)
    }
-
+   console.log(modules)
    // useMemo hook to optimize performance
    const modulesList = useMemo(() => modules.map((module, index) =>
       module && <li
@@ -27,10 +27,10 @@ function AllWords() {
          onClick={() => changeActiveModule(index)}>
          {module.name}
       </li>
-   ), [modules]) // modules is the dependency array
+   ), [modules])
 
    // Getting the active module
-   const activeModule = modules.length > 0 ? modules[activeModuleIndex].module : [];
+   const activeModule = modules.length > 0 ? modules[activeModuleIndex].moduleWords : [];
 
    // Mapping over the active module to create a list of words
    const wordsList = activeModule ? Object.entries(activeModule).map(([key, value]) =>

@@ -319,6 +319,20 @@
   .disabled {
     pointer-events: none;
   }
+
+  .disabledBtn {
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 24px;
+    pointer-events: none;
+    font-weight: 600;
+    font-size: 14px;
+    color: #b8b8b8;
+    background-color: #ececec;
+    cursor: pointer;
+  }
 }
 
 .lessonResult {

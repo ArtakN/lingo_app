@@ -1,3 +1,4 @@
+// Importing necessary modules and data
 import styles from './AdminPanel.module.scss'
 import { allWords, modules } from '../../data';
 import { db } from '../../firebase';
@@ -7,10 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function AdminPanel() {
 
+   // Filtering out All (allWords) from modules. We don't need to create All module in db so we need to filter it out.
    const dbModules = modules.filter(module => {
       return module.module !== allWords
    })
 
+   // Function to add words to Firestore
    const addWordsToDb = () => {
       // Loop through each module
       dbModules.forEach((module) => {
@@ -27,15 +30,10 @@ function AdminPanel() {
 
    const dispatch = useDispatch()
 
-
+   // Function to dispatch fetchWords action
    const showFetchedWords = () => {
       dispatch(fetchWords())
    }
-
-   useSelector(state => {
-      console.log(state.words.allWords)
-      console.log(state.words.modules)
-   })
 
    return (
       <div className={styles.adminPanel}>
@@ -50,7 +48,10 @@ function AdminPanel() {
                <button className={styles.addWordButton} onClick={showFetchedWords}>Add</button>
             </div>
             <div className={styles.addAllWords}>
-               <button className={styles.addToDb} onClick={addWordsToDb}>Add all words to db</button>
+               <p>All words from data.js will be setted to the firebase Words collection.</p>
+               <div>
+                  <button className={styles.addToDb} onClick={addWordsToDb}>Add all words to db</button>
+               </div>
             </div>
          </div>
       </div>

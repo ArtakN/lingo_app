@@ -16,14 +16,10 @@ export const initializeNewUser = createAsyncThunk(
             wordsCount: 10,
             modules: {
                All: false,
-               A11: false,
-               A12: false,
-               A21: false,
-               A22: false,
-               B11: false,
-               B12: false,
-               B21: false,
-               B22: false
+               A1: false,
+               A2: false,
+               B1: false,
+               B2: false,
             },
             exerciseTypes: {
                choose: true,
